@@ -66,10 +66,11 @@ type
     StaticText1: TStaticText;
     Shape1: TShape;
     Shape2: TShape;
-    SB: TStatusBar;
-    GroupBox3: TGroupBox;
-    LB_PW: TListBox;
 
+    GroupBox3: TGroupBox;
+    CLB_PW: TCheckListBox;
+
+    SB: TStatusBar;
     OpenDialog1: TOpenDialog;
     SaveDialog1: TSaveDialog;
 
@@ -107,7 +108,7 @@ implementation
 
 {$R *.dfm}
 
-uses Unit_ABOUT, Unit_SAKAS;
+uses Unit_ABOUT, Unit_SAKAS, Unit_Regist, Unit_Seg;
 procedure TForm_main.FormCreate(Sender: TObject);
 var
   Ini: TIniFile;
@@ -274,14 +275,23 @@ begin
         OFN := FN
       else
       begin
-        LDirList := TDirectory.GetDirectories(ChangeFileExt(TagFN, '')+'_cal');
-        OFN := 'Files NOT found';
-        for li:=0 to Length(LDirList)-1 do
+        if TDirectory.Exists(ChangeFileExt(TagFN, '')+'_cal') then
         begin
-          FN := LDirList[li]+'\'+ExtractFileName(CFN);
-          FileToFind := FileSearch(FN, GetCurrentDir);
-          if FileToFind<>'' then
-            OFN := FN
+          LDirList := TDirectory.GetDirectories(ChangeFileExt(TagFN, '')+'_cal');
+          OFN := 'Files NOT found';
+          for li:=0 to Length(LDirList)-1 do
+          begin
+            FN := LDirList[li]+'\'+ExtractFileName(CFN);
+            FileToFind := FileSearch(FN, GetCurrentDir);
+            if FileToFind<>'' then
+              OFN := FN
+          end;
+        end
+        else
+        begin
+          //ShowMessage('File NOT found!');
+          Edit_FN.Text := 'Files NOT found';
+          exit;
         end;
       end;
     end;
@@ -376,11 +386,11 @@ begin
     exit;
   end;
 
-  SetLength(PW,LB_PW.Items.Count+1);
-  LB_PW.Items.Add((LB_PW.Items.Count+1).ToString+': '+lFN);
-  LB_PW.ItemIndex := LB_PW.Items.Count-1;
+  SetLength(PW,CLB_PW.Items.Count+1);
+  CLB_PW.Items.Add((CLB_PW.Items.Count+1).ToString+': '+lFN);
+  CLB_PW.ItemIndex := CLB_PW.Items.Count-1;
 
-  TPW := LB_PW.ItemIndex;
+  TPW := CLB_PW.ItemIndex;
   PW[TPW] := TForm_PW.Create(Self);
 
   PW[TPW].FN := Edit_FN.Text;
@@ -435,19 +445,19 @@ end;
 
 procedure TForm_main.SB_Img_RegClick(Sender: TObject);
 begin
-//
+  Form_Regist.Show;
 end;
 
 procedure TForm_main.SB_Img_SegClick(Sender: TObject);
 begin
-//
+  Form_Seg.Show;
 end;
 
 procedure TForm_main.LB_PWClick(Sender: TObject);
 var
   TPW : longint;
 begin
-  TPW := LB_PW.ItemIndex;
+  TPW := CLB_PW.ItemIndex;
   PW[TPW].Show;
 end;
 

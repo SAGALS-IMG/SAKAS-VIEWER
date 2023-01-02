@@ -142,6 +142,14 @@
             <Form>Form_PW</Form>
             <FormType>dfm</FormType>
         </DCCReference>
+        <DCCReference Include="Unit_Regist.pas">
+            <Form>Form_Regist</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="Unit_Seg.pas">
+            <Form>Form_Seg</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>
@@ -170,6 +178,12 @@
                 </Excluded_Packages>
             </Delphi.Personality>
             <Deployment Version="3">
+                <DeployFile LocalName="Win64\Release\SAKAS_Viewer.exe" Configuration="Release" Class="ProjectOutput">
+                    <Platform Name="Win64">
+                        <RemoteName>SAKAS_Viewer.exe</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
                 <DeployFile LocalName="Win32\Debug\SAKAS_Viewer.exe" Configuration="Debug" Class="ProjectOutput">
                     <Platform Name="Win32">
                         <RemoteName>SAKAS_Viewer.exe</RemoteName>
@@ -179,12 +193,6 @@
                 <DeployFile LocalName="Win64\Debug\SAKAS_Viewer.exe" Configuration="Debug" Class="ProjectOutput">
                     <Platform Name="Win64">
                         <RemoteName>SAKAS_Viewer.exe</RemoteName>
-                        <Overwrite>true</Overwrite>
-                    </Platform>
-                </DeployFile>
-                <DeployFile LocalName="Win64\Debug\SAKAS_Viewer.rsm" Configuration="Debug" Class="DebugSymbols">
-                    <Platform Name="Win64">
-                        <RemoteName>SAKAS_Viewer.rsm</RemoteName>
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>

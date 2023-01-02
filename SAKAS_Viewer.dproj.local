@@ -8,7 +8,13 @@
     <Transaction>2022/12/19 22:34:14.000.709,=E:\Dropbox\Documents\Program\_20221220_SAKAS_Viewer\Unit_ABOUT.pas</Transaction>
     <Transaction>2022/12/19 22:58:04.000.814,=E:\Dropbox\Documents\Program\_20221220_SAKAS_Viewer\Unit_SAKAS.pas</Transaction>
     <Transaction>2022/12/19 23:14:06.000.542,=E:\Dropbox\Documents\Program\_20221220_SAKAS_Viewer\Unit1.pas</Transaction>
-    <Transaction>2022/12/19 23:14:41.000.795,E:\Dropbox\Documents\Program\_20221220_SAKAS_Viewer\Unit_PW.pas=E:\Dropbox\Documents\Program\_20221220_SAKAS_Viewer\Unit1.pas</Transaction>
     <Transaction>2022/12/19 23:14:41.000.795,E:\Dropbox\Documents\Program\_20221220_SAKAS_Viewer\Unit_PW.dfm=E:\Dropbox\Documents\Program\_20221220_SAKAS_Viewer\Unit1.dfm</Transaction>
+    <Transaction>2022/12/19 23:14:41.000.795,E:\Dropbox\Documents\Program\_20221220_SAKAS_Viewer\Unit_PW.pas=E:\Dropbox\Documents\Program\_20221220_SAKAS_Viewer\Unit1.pas</Transaction>
+    <Transaction>2022/12/31 23:06:57.000.030,=E:\Dropbox\Documents\Program\_20221220_SAKAS_Viewer\Unit1.pas</Transaction>
+    <Transaction>2022/12/31 23:07:58.000.828,E:\Dropbox\Documents\Program\_20221220_SAKAS_Viewer\Unit_Regist.dfm=E:\Dropbox\Documents\Program\_20221220_SAKAS_Viewer\Unit1.dfm</Transaction>
+    <Transaction>2022/12/31 23:07:58.000.828,E:\Dropbox\Documents\Program\_20221220_SAKAS_Viewer\Unit_Regist.pas=E:\Dropbox\Documents\Program\_20221220_SAKAS_Viewer\Unit1.pas</Transaction>
+    <Transaction>2023/01/01 00:28:35.000.343,=E:\Dropbox\Documents\Program\_20221220_SAKAS_Viewer\Unit1.pas</Transaction>
+    <Transaction>2023/01/01 00:29:39.000.090,E:\Dropbox\Documents\Program\_20221220_SAKAS_Viewer\Unit_Seg.dfm=E:\Dropbox\Documents\Program\_20221220_SAKAS_Viewer\Unit1.dfm</Transaction>
+    <Transaction>2023/01/01 00:29:39.000.090,E:\Dropbox\Documents\Program\_20221220_SAKAS_Viewer\Unit_Seg.pas=E:\Dropbox\Documents\Program\_20221220_SAKAS_Viewer\Unit1.pas</Transaction>
   </Transactions>
 </BorlandProject>

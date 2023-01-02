@@ -50,6 +50,8 @@ type
     { Protected éŒ¾ }
   public
     { Public éŒ¾ }
+    rank :longint;
+
     constructor Create(AOwner: TComponent); override;
     procedure MouseMove(Shift: TShiftState; X, Y: Integer); override;
     procedure MouseDown(Button: TMouseButton; Shift: TShiftState; X, Y: Integer); override;

@@ -536,7 +536,7 @@ begin
   LP := TForm_LP.Create(Self);
   FDCM := TForm_DICOM.Create(Self);
   if CB_UID.Checked then
-    if FileExists('dcm.ini') then
+    if FileExists('dcm_WUID.ini') then
     begin
       FDCM.Get_Data('dcm_WUID.ini');
       FDCM.Disp_Data(Sender);

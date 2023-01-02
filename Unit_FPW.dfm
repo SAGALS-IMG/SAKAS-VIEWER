@@ -22,9 +22,6 @@ object Form_FPW: TForm_FPW
     Height = 306
     Align = alClient
     TabOrder = 0
-    ExplicitTop = 345
-    ExplicitWidth = 853
-    ExplicitHeight = 533
     object Image1: TImage
       Left = 0
       Top = 0
@@ -66,7 +63,6 @@ object Form_FPW: TForm_FPW
     ScrollBars = ssBoth
     TabOrder = 1
     Zoom = 100
-    ExplicitWidth = 852
   end
   object SB: TStatusBar
     Left = 0
@@ -75,7 +71,6 @@ object Form_FPW: TForm_FPW
     Height = 19
     Panels = <>
     SimplePanel = True
-    ExplicitWidth = 852
   end
   object Panel1: TPanel
     Left = 0
@@ -86,7 +81,6 @@ object Form_FPW: TForm_FPW
     BevelOuter = bvNone
     Caption = 'Panel1'
     TabOrder = 3
-    ExplicitWidth = 852
     object GroupBox1: TGroupBox
       Left = 0
       Top = 0
@@ -419,8 +413,6 @@ object Form_FPW: TForm_FPW
       ParentColor = False
       ParentFont = False
       TabOrder = 1
-      ExplicitLeft = 406
-      ExplicitTop = -4
       object RB_Img: TRadioButton
         Left = 18
         Top = 23

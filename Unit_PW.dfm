@@ -39,8 +39,6 @@ object Form_PW: TForm_PW
       ParentColor = False
       ParentFont = False
       TabOrder = 0
-      ExplicitLeft = -2
-      ExplicitTop = -6
       object Bevel1: TBevel
         Left = 10
         Top = 16
@@ -2776,8 +2774,6 @@ object Form_PW: TForm_PW
           ParentBackground = False
           ParentColor = False
           TabOrder = 1
-          ExplicitTop = 176
-          ExplicitHeight = 251
           object GroupBox153: TGroupBox
             Left = 2
             Top = 16
@@ -2876,7 +2872,6 @@ object Form_PW: TForm_PW
             Align = alTop
             Caption = 'Vertical'
             TabOrder = 1
-            ExplicitTop = 131
             object Label156: TLabel
               Left = 15
               Top = 53
@@ -3187,7 +3182,6 @@ object Form_PW: TForm_PW
               ScrollBars = ssBoth
               TabOrder = 0
               Zoom = 100
-              ExplicitTop = 0
             end
             object Panel163: TPanel
               Left = 0
@@ -3198,7 +3192,6 @@ object Form_PW: TForm_PW
               BevelInner = bvRaised
               BevelOuter = bvLowered
               TabOrder = 1
-              ExplicitTop = 298
               object SB_Ana_Memo_CLR: TSpeedButton
                 Left = 6
                 Top = 3
@@ -3385,8 +3378,6 @@ object Form_PW: TForm_PW
           ParentBackground = False
           ParentColor = False
           TabOrder = 0
-          ExplicitTop = 149
-          ExplicitHeight = 278
           object Panel172: TPanel
             Left = 2
             Top = 16
@@ -3524,7 +3515,6 @@ object Form_PW: TForm_PW
             Align = alClient
             Caption = 'Main info.'
             TabOrder = 1
-            ExplicitHeight = 194
             object Label172: TLabel
               Left = 11
               Top = 27
@@ -4003,7 +3993,7 @@ object Form_PW: TForm_PW
       end
       object SS: TSelShape
         Left = 49
-        Top = 49
+        Top = 66
         Width = 65
         Height = 65
         Brush.Style = bsClear

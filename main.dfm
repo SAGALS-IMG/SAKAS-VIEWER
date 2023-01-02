@@ -22,7 +22,7 @@ object Form_main: TForm_main
     Height = 209
     Align = alTop
     Caption = 'Tag Files'
-    Color = 16771022
+    Color = 16773345
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -13
@@ -206,7 +206,6 @@ object Form_main: TForm_main
         Width = 116
         Height = 26
         Caption = 'Registration'
-        Enabled = False
         Flat = True
         Glyph.Data = {
           76010000424D7601000000000000760000002800000020000000100000000100
@@ -249,8 +248,7 @@ object Form_main: TForm_main
         Top = 62
         Width = 116
         Height = 26
-        Caption = 'DECT Seg.'
-        Enabled = False
+        Caption = '2 Images Seg.'
         Flat = True
         Glyph.Data = {
           76010000424D7601000000000000760000002800000020000000100000000100
@@ -340,8 +338,6 @@ object Form_main: TForm_main
       ParentFont = False
       TabOrder = 1
       OnClick = CLB_FileClick
-      ExplicitTop = 113
-      ExplicitHeight = 94
     end
   end
   object SB: TStatusBar
@@ -844,20 +840,17 @@ object Form_main: TForm_main
     Font.Style = [fsBold]
     ParentFont = False
     TabOrder = 3
-    object LB_PW: TListBox
+    object CLB_PW: TCheckListBox
       Left = 2
       Top = 16
       Width = 414
       Height = 119
-      AutoCompleteDelay = 100
       Align = alClient
-      BevelEdges = []
-      BevelInner = bvNone
+      BevelInner = bvLowered
       BevelOuter = bvNone
-      Color = 14478300
+      Color = 15529196
       ItemHeight = 14
       TabOrder = 0
-      OnClick = LB_PWClick
     end
   end
   object OpenDialog1: TOpenDialog
