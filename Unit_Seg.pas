@@ -6,7 +6,7 @@ uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ComCtrls,IniFiles, Clipbrd,
   VclTee.TeeGDIPlus, VCLTee.TeEngine, VCLTee.Series, Vcl.StdCtrls,
-  VCLTee.TeeProcs, VCLTee.Chart, Vcl.Buttons, Vcl.ExtCtrls, SelShape;
+  VCLTee.TeeProcs, VCLTee.Chart, Vcl.Buttons, Vcl.ExtCtrls, SelShape, Unit_LP;
 
 const
   Seg_Data_W =500;
@@ -128,12 +128,15 @@ type
     procedure Save_IntData(FN:string;Sender: Tobject);
     procedure Image1MouseMove(Sender: TObject; Shift: TShiftState; X,
       Y: Integer);
+    procedure Image1MouseDown(Sender: TObject; Button: TMouseButton;
+      Shift: TShiftState; X, Y: Integer);
   private
     { Private êÈåæ }
     MouseDown:boolean;
   public
     { Public êÈåæ }
     SS : array[0..99] of TSelShape;
+    SLP : TForm_LP;
   end;
 
 var
@@ -173,12 +176,14 @@ begin
   finally
     Ini.Free;
   end;
+  SLP := TForm_LP.Create(Self);
 end;
 
 procedure TForm_Seg.FormDestroy(Sender: TObject);
 var
   Ini: TIniFile;
 begin
+  SLP.Free;
   Ini := TIniFile.Create( ChangeFileExt( Application.ExeName, '.INI' ) );
   try
     Ini.WriteInteger( 'Form_Seg', 'Top', Top);
@@ -261,9 +266,13 @@ procedure TForm_Seg.SB_CLRClick(Sender: TObject);
 var
   lk:longint;
 begin
+  if CB_Area.Items.Count<0 then
+    exit;
+
   for lk:= 0 to CB_Area.Items.Count-1 do
   begin
-    SS[lk].Destroy;
+    SS[lk].Free;
+    // .Destroy;
   end;
   CB_Area.Items.Clear;
   CB_Area.Text := '';
@@ -490,6 +499,47 @@ begin
   Draw_Data(Sender);
 end;
 
+procedure TForm_Seg.Image1MouseDown(Sender: TObject; Button: TMouseButton;
+  Shift: TShiftState; X, Y: Integer);
+var
+  lMag : longint;
+  li:longint;
+begin
+  lMag :=10;
+  case CB_Mag.ItemIndex of
+    0:lMag := 10;
+    1:lMag := 4;
+    2:lMag := 2;
+    3:lMag := 1;
+  end;
+
+  if not( (ssCtrl in shift)  or (ssShift in Shift)) then
+  begin
+    if (X>=0) and (Y>=0) and (X*lMag<PW) and (Y*lMag<PH) then
+    begin
+      SLP.Series1.Clear;
+      SLP.Show;
+
+      if Button=mbLeft then
+      begin
+        for li:=0 to PW-1 do
+          if RB_Map.Checked then
+            SLP.Series1.AddY(Seg_Data[Round(Y*lMag),li],'')
+          else
+            SLP.Series1.AddY(Data[Round(Y*lMag),li],'');
+      end
+      else
+      begin
+        for li:=0 to PH-1 do
+          if RB_Map.Checked then
+            SLP.Series1.AddY(Seg_Data[li,Round(X*lMag)],'')
+          else
+            SLP.Series1.AddY(Data[li,Round(Y*lMag)],'');
+      end;
+    end;
+  end;
+end;
+
 procedure TForm_Seg.Image1MouseMove(Sender: TObject; Shift: TShiftState; X,
   Y: Integer);
 var
@@ -538,6 +588,8 @@ var
   TmpDbl, lMin, lMax : double;
   lData : array[0..255] of longint;
 begin
+  if CB_Orig_Img.Items.Count<1 then
+    exit;
   Series1.Clear;
   Series2.Clear;
   TPW := CB_Orig_Img.ItemIndex;
@@ -586,6 +638,8 @@ var
   li,lj, X1,X2,Y1,Y2,Xi,Yj, TPW1, TPW2:longint;
   E11,E12,E21,E22:double;
 begin
+  if CB_Orig_Img.Items.Count<1 then
+    exit;
   TPW1 := CB_Orig_Img.ItemIndex;
   TPW2 := CB_Target_Img.ItemIndex;
   X1 := 0;
@@ -621,6 +675,8 @@ var
   E11,E12,E21,E22:double;
   a,b,x0,y0,th:array[1..100] of double;
 begin
+  if CB_Orig_Img.Items.Count<1 then
+    exit;
   n_ROI := CB_Area.Items.Count;
   TPW1 := CB_Orig_Img.ItemIndex;
   TPW2 := CB_Target_Img.ItemIndex;
@@ -659,7 +715,7 @@ begin
         Yj := Trunc((1-(E22-main.PW[TPW2].Data[lj,li])/(E22-E21))*Seg_Data_H);
         if (Sqr(((Xi-x0[lk])*cos(th[lk])+(Yj-y0[lk])*sin(th[lk]))/a[lk])+Sqr((-(Xi-x0[lk])*sin(th[lk])+(Yj-y0[lk])*cos(th[lk]))/b[lk]))<=1 then
         begin
-          Data[lj,li] := lk;
+          Data[lj,li] := SS[lk-1].rank;
           Break;
         end
         else

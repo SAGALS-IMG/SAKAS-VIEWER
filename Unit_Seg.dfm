@@ -307,10 +307,12 @@ object Form_Seg: TForm_Seg
       Legend.Shadow.Transparency = 0
       Legend.Visible = False
       RightWall.Color = 14745599
+      Title.Font.Color = 10485760
+      Title.Font.Height = -11
       Title.Font.Name = 'Verdana'
+      Title.Font.Style = [fsBold]
       Title.Text.Strings = (
-        'TChart')
-      Title.Visible = False
+        'Intensity Histgram')
       BottomAxis.Axis.Color = 4210752
       BottomAxis.Grid.Color = 11119017
       BottomAxis.LabelsFormat.Font.Name = 'Verdana'
@@ -431,7 +433,7 @@ object Form_Seg: TForm_Seg
           Height = 14
           Alignment = taCenter
           AutoSize = False
-          Caption = '157*103'
+          Caption = '101*101'
           Color = clMenuBar
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clRed
@@ -478,7 +480,7 @@ object Form_Seg: TForm_Seg
           NumbersOnly = True
           ParentFont = False
           TabOrder = 1
-          Text = '350'
+          Text = '100'
         end
         object Edit_ROI_Top: TEdit
           Left = 96
@@ -495,7 +497,7 @@ object Form_Seg: TForm_Seg
           NumbersOnly = True
           ParentFont = False
           TabOrder = 2
-          Text = '250'
+          Text = '100'
         end
         object Edit_ROI_Bottom: TEdit
           Left = 157
@@ -512,7 +514,7 @@ object Form_Seg: TForm_Seg
           NumbersOnly = True
           ParentFont = False
           TabOrder = 3
-          Text = '500'
+          Text = '200'
         end
         object Edit_ROI_Right: TEdit
           Left = 91
@@ -529,7 +531,7 @@ object Form_Seg: TForm_Seg
           NumbersOnly = True
           ParentFont = False
           TabOrder = 4
-          Text = '700'
+          Text = '200'
         end
         object CB_Shape: TComboBox
           Left = 137
@@ -603,7 +605,7 @@ object Form_Seg: TForm_Seg
           Top = 6
           Width = 80
           Height = 25
-          Caption = 'Clear'
+          Caption = 'All Clear'
           Flat = True
           OnClick = SB_CLRClick
         end
@@ -644,6 +646,7 @@ object Form_Seg: TForm_Seg
         Top = 0
         Width = 2600
         Height = 2200
+        OnMouseDown = Image1MouseDown
         OnMouseMove = Image1MouseMove
       end
     end
