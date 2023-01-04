@@ -817,6 +817,7 @@ object Form_PW: TForm_PW
             Width = 20
             Height = 22
             Associate = Edit_Show_ImgNo
+            Max = 10000
             TabOrder = 13
             OnClick = UD_Show_ImgNoClick
           end
@@ -3929,7 +3930,7 @@ object Form_PW: TForm_PW
         Height = 25
         Align = alClient
         Ctl3D = True
-        Max = 0
+        Max = 10000
         ParentCtl3D = False
         TabOrder = 0
         ThumbLength = 16
@@ -3966,7 +3967,7 @@ object Form_PW: TForm_PW
           Width = 22
           Height = 25
           Associate = Edit_Img_No
-          Max = 0
+          Max = 10000
           TabOrder = 1
           OnClick = UD_TB_Img_NoClick
         end

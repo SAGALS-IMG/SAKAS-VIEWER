@@ -562,8 +562,8 @@ begin
   ct2:=1;
   for ct1 := 1 to n-2 do
   begin
-    TmpRe:=0;
-    TmpIm:=0;
+//    TmpRe:=0;
+//    TmpIm:=0;
     if ct1<ct2 then
     begin
       TmpRe:=InRe[ct1-1];

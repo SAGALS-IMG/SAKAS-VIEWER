@@ -233,8 +233,6 @@ var
   LDirList : TStringDynArray;
   li : longint;
 begin
-  OFN := IniF.ReadString( 'Proc_'+Proc_N.ToString, 'File_Name', '');
-
   Edit_ImgN.Text :=  IniF.ReadString( 'Proc_'+Proc_N.ToString, 'Image_Num', '');
   Edit_ST.Text :=  IniF.ReadString( 'Proc_'+Proc_N.ToString, 'ST', '0');
   Edit_End.Text :=  IniF.ReadString( 'Proc_'+Proc_N.ToString, 'End', '');
@@ -257,6 +255,8 @@ begin
   UD_Load_ST.Min := StrToInt(Edit_ST.Text);
   UD_Load_ST.Position :=UD_Load_ST.Min;
 
+  OFN := IniF.ReadString( 'Proc_'+Proc_N.ToString, 'File_Name', '');
+
   if CB_AutoDir.Checked then
   begin
     //ファイルパス検索用に実ファイル名を作成
@@ -264,12 +264,15 @@ begin
       FN := ReplaceStr(OFN,'*',Copy((100000+StrToInt(Edit_ST.Text)).ToString,6-UD_Dig.Position,UD_Dig.Position))
     else
       FN := ReplaceStr(OFN,'*',Edit_ST.Text);
+
+    if Copy(FN,1,1)<>Copy(TagFN,1,1) then
+      FN := Copy(TagFN,1,1)+Copy(FN,2,Length(FN)-1);
     CFN := FN;
 
     FileToFind := FileSearch(FN, GetCurrentDir);
     if FileToFind='' then
     begin
-      FN := ExtractFileDir(TagFN)+{'\'+}ExtractFileName(FN);
+      FN := ExtractFileDir(TagFN)+ExtractFileName(FN);
       FileToFind := FileSearch(FN, GetCurrentDir);
       if FileToFind<>'' then
         OFN := FN
@@ -284,7 +287,7 @@ begin
             FN := LDirList[li]+'\'+ExtractFileName(CFN);
             FileToFind := FileSearch(FN, GetCurrentDir);
             if FileToFind<>'' then
-              OFN := FN
+              OFN :=  ExtractFileDir(FileToFind)+'\'+ExtractFileName(IniF.ReadString( 'Proc_'+Proc_N.ToString, 'File_Name', ''));
           end;
         end
         else
@@ -294,11 +297,16 @@ begin
           exit;
         end;
       end;
-    end;
-    Edit_FN.Text := OFN;
+      Edit_FN.Text := OFN;
+    end
+    else
+    if Pos('*',OFN)<>0 then
+      Edit_FN.Text := ExtractFileDir(FileToFind)+'\'+ExtractFileName(OFN)
+    else
+      Edit_FN.Text := FN;
   end
   else
-    Edit_FN.Text := FN;
+    Edit_FN.Text := OFN;
 end;
 
 procedure TForm_main.OpenTag(Sender: TObject);
@@ -413,8 +421,7 @@ begin
   PW[TPW].UD_Show_ImgNo.Position := UD_Load_ST.Position;
   PW[TPW].UD_TB_Img_No.Position := UD_Load_ST.Position;
   PW[TPW].TB_Img_No.Position := UD_Load_ST.Position;
-
-  PW[TPW].Load_Data(PW[TPW].UD_Show_ImgNo.Position, Sender);
+  PW[TPW].Load_Data(UD_Load_ST.Position, Sender);
 
   PW[TPW].CB_Reset(Sender);
   PW[TPW].LUT_Reset(Sender);
@@ -440,6 +447,7 @@ begin
   PW[TPW].Edit_DCM_ST.Text:= PW[TPW].STZ.ToString;
   PW[TPW].Edit_DCM_End.Text := PW[TPW].EndZ.ToString;
 
+  PW[TPW].Booting := false;
   PW[TPW].Show;
 end;
 

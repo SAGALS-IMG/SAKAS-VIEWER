@@ -472,7 +472,7 @@ type
   public
     { Public êÈåæ }
     Data, OrigData, Buf1, Buf2 : array of array of double;
-    Fil_Kern : array[-5..5, -5..5] of double;
+    Fil_Kern : array[-10..10, -10..10] of double;
 
     PX, PY, OX, OY, PZ, STZ, ENDZ, Proc_N, FileType, FN_Digit : longint;
     Op_STZ, Op_EndZ : longint;
@@ -531,7 +531,6 @@ begin
   end;
   CG_LUT.ShowFields := false;
   CG_LUT.ShowLabels := false;
-  Booting := false;
 
   LP := TForm_LP.Create(Self);
   FDCM := TForm_DICOM.Create(Self);
@@ -588,23 +587,23 @@ end;
 
 procedure TForm_PW.Init_PW(Sender: TObject);
 var
-  lj,lk:longint;
+  lj:longint;
 begin
-  SetLength(Data, PY);
-  for lj :=0 to PY-1 do
-    SetLength(Data[lj], PX);
+  SetLength(Data, PY+1);
+  for lj :=0 to PY do
+    SetLength(Data[lj], PX+1);
 
-  SetLength(OrigData, PY);
-  for lj :=0 to PY-1 do
-    SetLength(OrigData[lj], PX);
+  SetLength(OrigData, PY+1);
+  for lj :=0 to PY do
+    SetLength(OrigData[lj], PX+1);
 
-  SetLength(Buf1, PY);
-  for lk:=0 to PY-1 do
-    SetLength(Buf1[lk], PX);
+  SetLength(Buf1, PY+1);
+  for lj:=0 to PY do
+    SetLength(Buf1[lj], PX+1);
 
-  SetLength(Buf2, PY);
-  for lk:=0 to PY-1 do
-    SetLength(Buf2[lk], PX);
+  SetLength(Buf2, PY+1);
+  for lj:=0 to PY do
+    SetLength(Buf2[lj], PX+1);
 
   UD_Show_ImgNo.Max := EndZ;
   UD_Show_ImgNo.Min := StZ;
