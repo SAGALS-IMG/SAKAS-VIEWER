@@ -1,46 +1,49 @@
 ﻿[Closed Files]
-File_0=TSourceModule,'c:\program files (x86)\embarcadero\studio\18.0\SOURCE\VCL\Vcl.ComCtrls.pas',0,1,15543,1,15593,0,0,{{17148,0},{17199,22},{''}}{{17202,0},{17253,22},{''}}{{17319,0},{17485,22},{''}}{{17622,0},{17698,22},{''}},
-File_1=TSourceModule,'c:\program files (x86)\embarcadero\studio\18.0\SOURCE\VCL\Vcl.Forms.pas',0,1,3572,1,3607,0,0,{{1740,4},{1756,15},{'TScrollWindow'}}{{1843,4},{1943,15},{'TMainMenuBarStyleHook'}},
+File_0=TSourceModule,'c:\program files (x86)\embarcadero\studio\18.0\SOURCE\VCL\Vcl.ComCtrls.pas',0,1,15543,1,15593,0,0,{{17148,0}
+File_1=TSourceModule,'c:\program files (x86)\embarcadero\studio\18.0\SOURCE\VCL\Vcl.Forms.pas',0,1,3572,1,3607,0,0,{{1740,4}
 File_2=TSourceModule,'E:\Dropbox\Documents\Program\_20221220_SAKAS_Viewer\SelShape.pas',0,1,22,19,53,0,0,,
 File_3=TSourceModule,'E:\Dropbox\Documents\Program\_20190120_DECT_plot_elli\main.pas',0,1,569,1,582,0,0,,
 File_4=TSourceModule,'E:\Dropbox\Documents\Program\_20190120_DECT_plot_elli\Unit1.pas',0,1,1,1,1,0,0,,
 File_5=TSourceModule,'c:\program files (x86)\embarcadero\studio\18.0\SOURCE\VCL\Vcl.Controls.pas',0,1,9814,1,9853,0,0,,
 File_6=TSourceModule,'E:\Dropbox\Documents\Program\_20160103_R2D_orig_001\main.pas',0,1,264,90,284,0,0,,
-File_7=TSourceModule,'c:\program files (x86)\embarcadero\studio\18.0\SOURCE\RTL\SYS\System.SysUtils.pas',0,1,5508,1,5539,0,0,,
-File_8=TSourceModule,'c:\program files (x86)\embarcadero\studio\18.0\SOURCE\RTL\SYS\System.pas',0,1,17809,1,17848,0,0,,
-File_9=TSourceModule,'E:\Dropbox\Documents\Program\_20220918_SAKAS_Viewer_old\Unit_DICOM.pas',0,1,757,1,897,0,0,{{689,63}
-File_10=TSourceModule,'E:\Dropbox\Documents\Program\20161214_DCM_Conv\Unit_Disp_DICOM.pas',0,1,40,1,1,0,0,,
-File_11=TSourceModule,'E:\Dropbox\Documents\Program\20161214_DCM_Conv\Unit_DICOM.pas',0,1,4,1,1,0,0,,
-File_12=TSourceModule,'E:\Dropbox\Documents\Program\_20160103_R2D_orig_001\Unit_DICOM.pas',0,1,16,1,1,0,0,,
-File_13=TSourceModule,'E:\Dropbox\Documents\Program\_20160103_R2D_orig_001\Unit_Disp_DICOM.pas',0,1,853,1,1,0,0,,
-File_14=TSourceModule,'E:\Dropbox\Documents\Program\_20220918_SAKAS_Viewer_old\Unit_3DPW.pas',0,1,1354,1,1389,0,0,,
+File_7=TSourceModule,'c:\program files (x86)\embarcadero\studio\18.0\SOURCE\RTL\SYS\System.pas',0,1,17809,1,17848,0,0,,
+File_8=TSourceModule,'E:\Dropbox\Documents\Program\_20220918_SAKAS_Viewer_old\Unit_DICOM.pas',0,1,757,1,897,0,0,{{689,63}
+File_9=TSourceModule,'E:\Dropbox\Documents\Program\20161214_DCM_Conv\Unit_Disp_DICOM.pas',0,1,40,1,1,0,0,,
+File_10=TSourceModule,'E:\Dropbox\Documents\Program\20161214_DCM_Conv\Unit_DICOM.pas',0,1,4,1,1,0,0,,
+File_11=TSourceModule,'E:\Dropbox\Documents\Program\_20160103_R2D_orig_001\Unit_DICOM.pas',0,1,16,1,1,0,0,,
+File_12=TSourceModule,'E:\Dropbox\Documents\Program\_20160103_R2D_orig_001\Unit_Disp_DICOM.pas',0,1,853,1,1,0,0,,
+File_13=TSourceModule,'E:\Dropbox\Documents\Program\_20220918_SAKAS_Viewer_old\Unit_3DPW.pas',0,1,1354,1,1389,0,0,,
 
 [Modules]
-Module0=E:\Dropbox\Documents\Program\_20221220_SAKAS_Viewer\Unit_PW.pas
-Module1=E:\Dropbox\Documents\Program\_20221220_SAKAS_Viewer\Unit_Seg.pas
-Module2=E:\Dropbox\Documents\Program\_20221220_SAKAS_Viewer\Unit_FPW.pas
-Module3=E:\Dropbox\Documents\Program\_20221220_SAKAS_Viewer\main.pas
-Module4=E:\Dropbox\Documents\Program\_20221220_SAKAS_Viewer\Unit_ABOUT.pas
-Module5=E:\Dropbox\Documents\Program\_20221220_SAKAS_Viewer\Unit_DICOM.pas
-Module6=E:\Dropbox\Documents\Program\_20221220_SAKAS_Viewer\Unit_Regist.pas
-Module7=E:\Dropbox\Documents\Program\_20220918_SAKAS_Viewer_old\Unit_LP.pas
-Module8=E:\Dropbox\Documents\Program\_20221220_SAKAS_Viewer\Unit_SAKAS.pas
-Count=9
+Module0=E:\Dropbox\Documents\Program\_20221220_SAKAS_Viewer\main.pas
+Module1=c:\program files (x86)\embarcadero\studio\18.0\SOURCE\RTL\SYS\System.SysUtils.pas
+Module2=E:\Dropbox\Documents\Program\_20221220_SAKAS_Viewer\Unit_PW.pas
+Module3=E:\Dropbox\Documents\Program\_20221220_SAKAS_Viewer\Unit_ABOUT.pas
+Module4=E:\Dropbox\Documents\Program\_20221220_SAKAS_Viewer\Unit_Seg.pas
+Module5=E:\Dropbox\Documents\Program\_20221220_SAKAS_Viewer\Unit_FPW.pas
+Module6=E:\Dropbox\Documents\Program\_20221220_SAKAS_Viewer\Unit_DICOM.pas
+Module7=E:\Dropbox\Documents\Program\_20221220_SAKAS_Viewer\Unit_Regist.pas
+Module8=E:\Dropbox\Documents\Program\_20220918_SAKAS_Viewer_old\Unit_LP.pas
+Module9=E:\Dropbox\Documents\Program\_20221220_SAKAS_Viewer\Unit_SAKAS.pas
+Count=10
 EditWindowCount=1
 
+[E:\Dropbox\Documents\Program\_20221220_SAKAS_Viewer\main.pas]
+ModuleType=TSourceModule
+
+[c:\program files (x86)\embarcadero\studio\18.0\SOURCE\RTL\SYS\System.SysUtils.pas]
+ModuleType=TSourceModule
+
 [E:\Dropbox\Documents\Program\_20221220_SAKAS_Viewer\Unit_PW.pas]
+ModuleType=TSourceModule
+
+[E:\Dropbox\Documents\Program\_20221220_SAKAS_Viewer\Unit_ABOUT.pas]
 ModuleType=TSourceModule
 
 [E:\Dropbox\Documents\Program\_20221220_SAKAS_Viewer\Unit_Seg.pas]
 ModuleType=TSourceModule
 
 [E:\Dropbox\Documents\Program\_20221220_SAKAS_Viewer\Unit_FPW.pas]
-ModuleType=TSourceModule
-
-[E:\Dropbox\Documents\Program\_20221220_SAKAS_Viewer\main.pas]
-ModuleType=TSourceModule
-
-[E:\Dropbox\Documents\Program\_20221220_SAKAS_Viewer\Unit_ABOUT.pas]
 ModuleType=TSourceModule
 
 [E:\Dropbox\Documents\Program\_20221220_SAKAS_Viewer\Unit_DICOM.pas]
@@ -57,7 +60,7 @@ ModuleType=TSourceModule
 
 [EditWindow0]
 ViewCount=10
-CurrentEditView=E:\Dropbox\Documents\Program\_20221220_SAKAS_Viewer\Unit_PW.pas
+CurrentEditView=E:\Dropbox\Documents\Program\_20221220_SAKAS_Viewer\main.pas
 View0=0
 View1=1
 View2=2
@@ -73,14 +76,14 @@ Create=1
 Visible=1
 Docked=0
 State=0
-Left=1816
-Top=1270
-Width=4844
-Height=8362
+Left=1691
+Top=1504
+Width=6523
+Height=8305
 MaxLeft=-4
 MaxTop=-7
-ClientWidth=4781
-ClientHeight=8085
+ClientWidth=6461
+ClientHeight=8028
 DockedToMainForm=0
 BorlandEditorCodeExplorer=BorlandEditorCodeExplorer@EditWindow0
 TopPanelSize=0
@@ -89,22 +92,33 @@ LeftPanelClients=BorlandEditorCodeExplorer@EditWindow0
 LeftPanelData=0000080001000100000019000000426F726C616E64456469746F72436F64654578706C6F726572B20C00000000000000DF01000000000000FFFFFFFF
 RightPanelSize=0
 BottomPanelSize=0
-BottomMiddlePanelSize=2222
+BottomMiddlePanelSize=0
 BottomMiddlePanelClients=DockSite0,ToDo List,MessageView
-BottomMiddelPanelData=0000080001020200000009000000446F636B53697465300E000000546F446F4C69737457696E646F77342100000000000002AE080000000000000100000000342100000F0000004D65737361676556696577466F726DFFFFFFFF
+BottomMiddelPanelData=0000080001020300000009000000446F636B53697465300E000000546F446F4C69737457696E646F770F0000004D65737361676556696577466F726D391F000000000000029005000000000000FFFFFFFF
 
 [View0]
 CustomEditViewType=TEditView
 Module=E:\Dropbox\Documents\Program\_20221220_SAKAS_Viewer\main.pas
-CursorX=28
-CursorY=232
-TopLine=219
+CursorX=16
+CursorY=278
+TopLine=243
 LeftCol=1
 Elisions=
 Bookmarks=
 EditViewName=E:\Dropbox\Documents\Program\_20221220_SAKAS_Viewer\main.pas
 
 [View1]
+CustomEditViewType=TEditView
+Module=c:\program files (x86)\embarcadero\studio\18.0\SOURCE\RTL\SYS\System.SysUtils.pas
+CursorX=1
+CursorY=10102
+TopLine=10062
+LeftCol=1
+Elisions=
+Bookmarks=
+EditViewName=c:\program files (x86)\embarcadero\studio\18.0\SOURCE\RTL\SYS\System.SysUtils.pas
+
+[View2]
 CustomEditViewType=TEditView
 Module=E:\Dropbox\Documents\Program\_20221220_SAKAS_Viewer\Unit_ABOUT.pas
 CursorX=1
@@ -115,18 +129,18 @@ Elisions=
 Bookmarks=
 EditViewName=E:\Dropbox\Documents\Program\_20221220_SAKAS_Viewer\Unit_ABOUT.pas
 
-[View2]
+[View3]
 CustomEditViewType=TEditView
 Module=E:\Dropbox\Documents\Program\_20221220_SAKAS_Viewer\Unit_PW.pas
-CursorX=42
-CursorY=2858
+CursorX=62
+CursorY=2870
 TopLine=2848
 LeftCol=1
 Elisions={{551,48},{586,3},{''}}{{649,19},{667,3},{''}}{{670,19},{689,3},{''}}{{692,19},{711,3},{''}}{{714,19},{733,3},{''}}{{758,19},{772,3},{''}}{{774,65},{791,3},{''}}{{795,63},{834,3},{''}}{{836,46},{852,3},{''}}{{854,46},{915,3},{''}}{{918,37},{948,3},{''}}{{982,54},{989,3},{''}}{{991,49},{995,3},{''}}{{997,51},{1001,3},{''}}{{1003,49},{1026,3},{''}}{{1028,49},{1032,3},{''}}{{1034,53},{1037,3},{''}}{{1107,44},{1171,3},{''}}{{1173,48},{1209,3},{''}}{{1211,45},{1229,3},{''}}{{1231,53},{1235,3},{''}}{{1237,50},{1241,3},{''}}{{1244,37},{1256,3},{''}}{{1258,50},{1262,3},{''}}{{1266,46},{1305,3},{''}}{{1307,45},{1329,3},{''}}{{1331,45},{1384,3},{''}}{{1387,37},{1436,3},{''}}{{1438,47},{1454,3},{''}}{{1456,66},{1459,3},{''}}{{1461,46},{1503,3},{''}}{{1505,54},{1509,3},{''}}{{1511,49},{1547,3},{''}}{{2119,48},{2185,3},{''}}{{2187,53},{2195,3},{''}}{{2197,56},{2264,3},{''}}
 Bookmarks=
 EditViewName=E:\Dropbox\Documents\Program\_20221220_SAKAS_Viewer\Unit_PW.pas
 
-[View3]
+[View4]
 CustomEditViewType=TEditView
 Module=E:\Dropbox\Documents\Program\_20221220_SAKAS_Viewer\Unit_Regist.pas
 CursorX=53
@@ -137,7 +151,7 @@ Elisions=
 Bookmarks=
 EditViewName=E:\Dropbox\Documents\Program\_20221220_SAKAS_Viewer\Unit_Regist.pas
 
-[View4]
+[View5]
 CustomEditViewType=TEditView
 Module=E:\Dropbox\Documents\Program\_20221220_SAKAS_Viewer\Unit_Seg.pas
 CursorX=48
@@ -147,9 +161,6 @@ LeftCol=1
 Elisions={{205,46},{217,3},{''}}{{221,54},{263,3},{''}}{{303,70},{306,3},{''}}{{309,14},{330,3},{''}}{{333,37},{336,3},{''}}{{339,37},{342,3},{''}}{{345,31},{348,3},{''}}{{357,32},{399,3},{''}}{{481,53},{485,3},{''}}{{487,50},{490,3},{''}}{{492,49},{495,3},{''}}{{497,56},{500,3},{''}}
 Bookmarks=
 EditViewName=E:\Dropbox\Documents\Program\_20221220_SAKAS_Viewer\Unit_Seg.pas
-
-[View5]
-CustomEditViewType=TOTACustomEditView
 
 [View6]
 CustomEditViewType=TEditView
@@ -251,14 +262,14 @@ Left7=1435
 Top7=346
 Width7=1016
 Height7=950
-Visible7=1
+Visible7=0
 State7=0
 Module8=E:\Dropbox\Documents\Program\_20221220_SAKAS_Viewer\Unit_ABOUT.pas
 Left8=996
 Top8=553
 Width8=462
 Height8=373
-Visible8=1
+Visible8=0
 State8=0
 Module9=E:\Dropbox\Documents\Program\_20220918_SAKAS_Viewer\Unit_image.pas
 Left9=442
@@ -437,11 +448,11 @@ WatchColumnWidth=120
 WatchShowColumnHeaders=1
 PercentageSizes=1
 Create=1
-Visible=1
+Visible=0
 Docked=0
 State=0
-Left=730
-Top=7092
+Left=0
+Top=3716
 Width=2625
 Height=1936
 MaxLeft=-4
@@ -459,9 +470,6 @@ Count=0
 [EmbarcaderoWin32Debugger_AddressBreakpoints]
 Count=0
 
-[EmbarcaderoOSXDebugger_AddressBreakpoints]
-Count=0
-
 [EmbarcaderoWin64Debugger_AddressBreakpoints]
 Count=0
 
@@ -472,7 +480,7 @@ Visible=1
 Docked=0
 State=0
 Left=0
-Top=213
+Top=0
 Width=10000
 Height=915
 MaxLeft=-4
@@ -503,18 +511,18 @@ StayOnTop=0
 [MessageView]
 PercentageSizes=1
 Create=1
-Visible=1
+Visible=0
 Docked=1
 State=0
 Left=0
-Top=18
-Width=4781
-Height=2142
+Top=0
+Width=3520
+Height=1248
 MaxLeft=-1
 MaxTop=-1
-ClientWidth=4781
-ClientHeight=2142
-TBDockHeight=2142
+ClientWidth=3520
+ClientHeight=1248
+TBDockHeight=1248
 LRDockWidth=3520
 Dockable=1
 StayOnTop=0
@@ -545,7 +553,7 @@ Visible=0
 Docked=0
 State=0
 Left=0
-Top=3191
+Top=0
 Width=953
 Height=3163
 MaxLeft=-4
@@ -582,19 +590,24 @@ Create=1
 Visible=1
 Docked=0
 State=0
-Left=20
-Top=1489
+Left=0
+Top=5149
 Width=1691
-Height=8170
+Height=4887
 MaxLeft=-4
 MaxTop=-7
 ClientWidth=1629
-ClientHeight=7894
+ClientHeight=4610
 TBDockHeight=5816
 LRDockWidth=1551
 Dockable=1
 StayOnTop=0
-SplitPos=135
+SplitPos=73
+
+[PropInspDesignerSelection]
+ArrangeBy=Name
+SelectedItem=Name,
+ExpandedItems=Font=0,"LiveBinding デザイナ=0",LiveBindings=0,Margins=0
 
 [frmDesignPreview]
 PercentageSizes=1
@@ -622,7 +635,7 @@ Visible=0
 Docked=0
 State=0
 Left=23
-Top=4376
+Top=1234
 Width=2152
 Height=6901
 MaxLeft=-4
@@ -641,7 +654,7 @@ Visible=0
 Docked=0
 State=0
 Left=8215
-Top=6730
+Top=5709
 Width=1785
 Height=4546
 MaxLeft=-4
@@ -663,7 +676,7 @@ Visible=0
 Docked=0
 State=0
 Left=2625
-Top=9135
+Top=8071
 Width=3484
 Height=2142
 MaxLeft=-4
@@ -682,7 +695,7 @@ Visible=0
 Docked=0
 State=0
 Left=0
-Top=9135
+Top=8071
 Width=2625
 Height=2142
 MaxLeft=-4
@@ -705,7 +718,7 @@ Visible=0
 Docked=0
 State=0
 Left=0
-Top=8858
+Top=5667
 Width=2625
 Height=2404
 MaxLeft=-4
@@ -724,7 +737,7 @@ Visible=0
 Docked=0
 State=0
 Left=0
-Top=4567
+Top=1376
 Width=2625
 Height=2348
 MaxLeft=-4
@@ -743,7 +756,7 @@ Visible=0
 Docked=0
 State=0
 Left=0
-Top=3191
+Top=0
 Width=2230
 Height=1809
 MaxLeft=-4
@@ -846,7 +859,7 @@ Visible=0
 Docked=0
 State=0
 Left=1930
-Top=8071
+Top=8376
 Width=2855
 Height=3206
 MaxLeft=-4
@@ -865,7 +878,7 @@ Visible=0
 Docked=0
 State=0
 Left=0
-Top=3624
+Top=433
 Width=1895
 Height=3277
 MaxLeft=-4
@@ -883,8 +896,8 @@ Create=1
 Visible=0
 Docked=1
 State=0
-Left=-430
-Top=-1297
+Left=-449
+Top=-1413
 Width=3562
 Height=4830
 MaxLeft=-1
@@ -902,8 +915,8 @@ Create=1
 Visible=0
 Docked=1
 State=0
-Left=-430
-Top=-1297
+Left=-449
+Top=-1413
 Width=3562
 Height=4830
 MaxLeft=-1
@@ -922,7 +935,7 @@ Visible=0
 Docked=0
 State=0
 Left=6105
-Top=9135
+Top=8071
 Width=3895
 Height=2142
 MaxLeft=-4
@@ -944,7 +957,7 @@ Column6Width=75
 [StructureView]
 PercentageSizes=1
 Create=1
-Visible=0
+Visible=1
 Docked=0
 State=0
 Left=0
@@ -1023,7 +1036,7 @@ Dockable=1
 StayOnTop=0
 TabPosition=1
 ActiveTabID=RefactoringForm
-TabDockClients=RefactoringForm,FindReferencsForm,QAView,MetricsView
+TabDockClients=RefactoringForm,FindReferencsForm,MetricsView,QAView
 
 [DockSite1]
 DockSiteType=1
@@ -1033,7 +1046,7 @@ Visible=1
 Docked=0
 State=0
 Left=8215
-Top=3035
+Top=1950
 Width=1785
 Height=8291
 MaxLeft=-4

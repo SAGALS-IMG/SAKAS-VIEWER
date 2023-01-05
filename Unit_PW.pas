@@ -406,7 +406,7 @@ type
     procedure Make_CB(Sender: TObject);
     procedure CB_BCChange(Sender: TObject);
     procedure Chart_CBClick(Sender: TObject);
-    procedure Chart_CBMouseDown(Sender: TObject; Button: TMouseButton;
+    procedure Chart_CBMouseUp(Sender: TObject; Button: TMouseButton;
       Shift: TShiftState; X, Y: Integer);
     procedure CB_Reset(Sender: TObject);
     procedure SB_CB_ResetClick(Sender: TObject);
@@ -1240,19 +1240,32 @@ begin
   Draw_Data(Sender);
 end;
 
-procedure TForm_PW.Chart_CBMouseDown(Sender: TObject; Button: TMouseButton;
+procedure TForm_PW.Chart_CBMouseUp(Sender: TObject; Button: TMouseButton;
   Shift: TShiftState; X, Y: Integer);
 var
+  li:longint;
   lX, lY :double;
 begin
   if Button=mbRight then
   begin
     lX := Series2.XScreenToValue(X);
     lY := Series2.YScreenToValue(Y);
-    Series2.AddXY(lX,lY);
-    Make_CB(Sender);
-    Draw_Data(Sender);
+    if (lX>Series2.MinXValue) and (lX<Series2.MaxXValue) then
+    begin
+      Series2.AddXY(lX,lY);
+      Make_CB(Sender);
+      Draw_Data(Sender);
+    end;
   end;
+  for li:=1 to Series2.Count-2 do
+  begin
+    if Series2.XValue[li]<Series2.XValue[0] then
+      Series2.XValue[li] := Series2.XValue[0]+(Series2.XValue[Series2.Count-1]-Series2.XValue[0])*0.1;
+    if Series2.XValue[li]>Series2.XValue[Series2.Count-1] then
+      Series2.XValue[li] := Series2.XValue[Series2.Count-1]-(Series2.XValue[Series2.Count-1]-Series2.XValue[0])*0.1;
+  end;
+  Make_CB(Sender);
+  Draw_Data(Sender);
 end;
 
 procedure TForm_PW.CB_CB_SpClick(Sender: TObject);

@@ -73,6 +73,7 @@ type
     SB: TStatusBar;
     OpenDialog1: TOpenDialog;
     SaveDialog1: TSaveDialog;
+    CB_Log: TCheckBox;
 
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
@@ -229,7 +230,7 @@ end;
 procedure TForm_main.Read_Proc_Cond(Proc_N: byte; IniF: TIniFile;
   Sender: TObject);
 var
-  FN, OFN,  CFN, FileToFind : string;
+  lFN, OFN,  CFN, FileToFind, lStr : string;
   LDirList : TStringDynArray;
   li : longint;
 begin
@@ -261,21 +262,20 @@ begin
   begin
     //ファイルパス検索用に実ファイル名を作成
     if UD_Dig.Position<>0 then
-      FN := ReplaceStr(OFN,'*',Copy((100000+StrToInt(Edit_ST.Text)).ToString,6-UD_Dig.Position,UD_Dig.Position))
+      lFN := ReplaceStr(OFN,'*',Copy((100000+StrToInt(Edit_ST.Text)).ToString,6-UD_Dig.Position,UD_Dig.Position))
     else
-      FN := ReplaceStr(OFN,'*',Edit_ST.Text);
-
-    if Copy(FN,1,1)<>Copy(TagFN,1,1) then
-      FN := Copy(TagFN,1,1)+Copy(FN,2,Length(FN)-1);
-    CFN := FN;
-
-    FileToFind := FileSearch(FN, GetCurrentDir);
+      lFN := ReplaceStr(OFN,'*',Edit_ST.Text);
+    CFN := lFN;
+    FileToFind := FileSearch(lFN, GetCurrentDir);
     if FileToFind='' then
     begin
-      FN := ExtractFileDir(TagFN)+ExtractFileName(FN);
-      FileToFind := FileSearch(FN, GetCurrentDir);
+      lStr := ExtractFileDir(TagFN);
+      if Copy(lStr,Length(lStr),1)<>'\' then
+        lStr := lStr+'\';
+      lFN := lStr + ExtractFileName(lFN);
+      FileToFind := FileSearch(lFN, GetCurrentDir);
       if FileToFind<>'' then
-        OFN := FN
+        OFN := lFN
       else
       begin
         if TDirectory.Exists(ChangeFileExt(TagFN, '')+'_cal') then
@@ -284,15 +284,14 @@ begin
           OFN := 'Files NOT found';
           for li:=0 to Length(LDirList)-1 do
           begin
-            FN := LDirList[li]+'\'+ExtractFileName(CFN);
-            FileToFind := FileSearch(FN, GetCurrentDir);
+            lFN := LDirList[li]+'\'+ExtractFileName(CFN);
+            FileToFind := FileSearch(lFN, GetCurrentDir);
             if FileToFind<>'' then
               OFN :=  ExtractFileDir(FileToFind)+'\'+ExtractFileName(IniF.ReadString( 'Proc_'+Proc_N.ToString, 'File_Name', ''));
           end;
         end
         else
         begin
-          //ShowMessage('File NOT found!');
           Edit_FN.Text := 'Files NOT found';
           exit;
         end;
@@ -303,7 +302,7 @@ begin
     if Pos('*',OFN)<>0 then
       Edit_FN.Text := ExtractFileDir(FileToFind)+'\'+ExtractFileName(OFN)
     else
-      Edit_FN.Text := FN;
+      Edit_FN.Text := OFN;
   end
   else
     Edit_FN.Text := OFN;
@@ -400,6 +399,7 @@ begin
 
   TPW := CLB_PW.ItemIndex;
   PW[TPW] := TForm_PW.Create(Self);
+  PW[TPW].CB_Log.Checked := CB_Log.Checked;
 
   PW[TPW].FN := Edit_FN.Text;
   PW[TPW].FN_Digit := UD_Dig.Position;

@@ -51,7 +51,7 @@ object AboutBox: TAboutBox
     Height = 22
     Alignment = taCenter
     AutoSize = False
-    Caption = 'Ver. 2023/1/3'
+    Caption = 'Ver. 2023/1/5'
     Font.Charset = ARABIC_CHARSET
     Font.Color = clWindowText
     Font.Height = -16

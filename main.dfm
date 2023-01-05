@@ -64,7 +64,7 @@ object Form_main: TForm_main
         Left = 7
         Top = 30
         Width = 84
-        Height = 61
+        Height = 60
         Style = bsRaised
       end
       object SB_SKS_Editor: TSpeedButton
@@ -155,9 +155,9 @@ object Form_main: TForm_main
         OnClick = SB_DirClick
       end
       object SB_Help: TSpeedButton
-        Left = 336
-        Top = 66
-        Width = 73
+        Left = 345
+        Top = 68
+        Width = 64
         Height = 23
         Caption = 'SAKAS ver.'
         Flat = True
@@ -172,7 +172,7 @@ object Form_main: TForm_main
       end
       object SB_Open: TSpeedButton
         Left = 7
-        Top = 31
+        Top = 30
         Width = 84
         Height = 60
         Caption = 'Img Open'
@@ -321,6 +321,20 @@ object Form_main: TForm_main
         Associate = Edit_Load_ST
         Max = 10000
         TabOrder = 3
+      end
+      object CB_Log: TCheckBox
+        Left = 303
+        Top = 71
+        Width = 41
+        Height = 17
+        Caption = 'Log'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -9
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        ParentFont = False
+        TabOrder = 4
       end
     end
     object CLB_File: TCheckListBox

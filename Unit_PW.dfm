@@ -1063,13 +1063,14 @@ object Form_PW: TForm_PW
               TopAxis.Title.Font.Name = 'Verdana'
               View3D = False
               View3DWalls = False
+              Zoom.Allow = False
               Align = alLeft
               BevelInner = bvRaised
               BevelOuter = bvLowered
               Color = 14872546
               TabOrder = 1
               OnClick = Chart_CBClick
-              OnMouseDown = Chart_CBMouseDown
+              OnMouseUp = Chart_CBMouseUp
               DefaultCanvas = 'TGDIPlusCanvas'
               ColorPaletteIndex = 13
               object Series3: TFastLineSeries
@@ -1567,6 +1568,7 @@ object Form_PW: TForm_PW
               TopAxis.Title.Font.Name = 'Verdana'
               View3D = False
               View3DWalls = False
+              Zoom.Allow = False
               BevelInner = bvRaised
               BevelOuter = bvLowered
               Color = 14872546
