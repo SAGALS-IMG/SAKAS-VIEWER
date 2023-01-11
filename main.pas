@@ -17,6 +17,7 @@ type
     Bevel4: TBevel;
     Label01: TLabel;
     Label12: TLabel;
+    CB_Log: TCheckBox;
     SB_Dir: TSpeedButton;
     SB_TagList_Reload: TSpeedButton;
     SB_Open: TSpeedButton;
@@ -73,7 +74,6 @@ type
     SB: TStatusBar;
     OpenDialog1: TOpenDialog;
     SaveDialog1: TSaveDialog;
-    CB_Log: TCheckBox;
 
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
@@ -140,6 +140,7 @@ begin
     RG_Format.ItemIndex :=Ini.ReadInteger( 'Param', 'Image_Format', 0 );
 
     UD_Load_ST.Position :=Ini.ReadInteger( 'Param', 'Load_ST', 0 );
+    CB_Log.Checked := Ini.ReadBool('Param', 'Log', false );
   finally
     Ini.Free;
   end;
@@ -170,6 +171,7 @@ begin
     Ini.WriteString( 'Param', 'Slice_End', Edit_End.Text );
     Ini.WriteInteger( 'Param', 'Image_Format', RG_Format.ItemIndex );
     Ini.WriteInteger( 'Param', 'Load_ST', UD_Load_ST.Position );
+    Ini.WriteBool('Param', 'Log', CB_Log.Checked );
   finally
     Ini.Free;
   end;

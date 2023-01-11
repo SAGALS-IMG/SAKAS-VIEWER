@@ -28,27 +28,39 @@ object Form_LP: TForm_LP
     Width = 821
     Height = 19
     Panels = <>
-    ExplicitTop = 356
-    ExplicitWidth = 679
   end
   object Chart1: TChart
     Left = 0
     Top = 0
     Width = 623
     Height = 432
+    Gradient.EndColor = clWhite
+    Gradient.StartColor = 16711668
+    Gradient.Visible = True
     Legend.Visible = False
     Title.Text.Strings = (
       'TChart')
     Title.Visible = False
+    Shadow.HorizSize = 1
+    Shadow.VertSize = 1
     View3D = False
     Align = alClient
     BevelOuter = bvNone
     AutoSize = True
     TabOrder = 1
-    ExplicitWidth = 417
-    ExplicitHeight = 356
     DefaultCanvas = 'TGDIPlusCanvas'
     ColorPaletteIndex = 13
+    object Memo: TMemo
+      Left = 16
+      Top = 377
+      Width = 177
+      Height = 49
+      Lines.Strings = (
+        'Memo')
+      ScrollBars = ssBoth
+      TabOrder = 0
+      Visible = False
+    end
     object Series1: TLineSeries
       HoverElement = [heCurrent]
       Title = 'X'
@@ -80,32 +92,30 @@ object Form_LP: TForm_LP
     Align = alRight
     BevelOuter = bvNone
     TabOrder = 2
-    ExplicitLeft = 704
     object CG: TChartGrid
       Left = 0
-      Top = 41
+      Top = 57
       Width = 195
-      Height = 391
+      Height = 375
       Align = alClient
       DefaultColWidth = 60
       Options = [goVertLine, goHorzLine, goRangeSelect, goDrawFocusSelected, goRowSizing, goColSizing, goEditing, goTabs, goThumbTracking]
       TabOrder = 0
       Chart = Chart1
       ShowLabels = False
+      ExplicitTop = 41
+      ExplicitHeight = 391
     end
     object Panel2: TPanel
       Left = 0
       Top = 0
       Width = 195
-      Height = 41
+      Height = 57
       Align = alTop
       BevelOuter = bvNone
       TabOrder = 1
-      ExplicitLeft = 72
-      ExplicitTop = 32
-      ExplicitWidth = 185
       object SB_Edit: TSpeedButton
-        Left = 3
+        Left = 105
         Top = 3
         Width = 75
         Height = 35
@@ -133,6 +143,50 @@ object Form_LP: TForm_LP
         ParentFont = False
         OnClick = SB_EditClick
       end
+      object SB_Export: TSpeedButton
+        Left = 6
+        Top = 3
+        Width = 75
+        Height = 35
+        Caption = 'Export'
+        Flat = True
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -11
+        Font.Name = 'Tahoma'
+        Font.Style = [fsBold]
+        Glyph.Data = {
+          76010000424D7601000000000000760000002800000020000000100000000100
+          04000000000000010000130B0000130B00001000000000000000000000000000
+          800000800000008080008000000080008000808000007F7F7F00BFBFBF000000
+          FF0000FF000000FFFF00FF000000FF00FF00FFFF0000FFFFFF00333333333333
+          33333333333FFFFFFFFF333333000000000033333377777777773333330FFFFF
+          FFF03333337F333333373333330FFFFFFFF03333337F3FF3FFF73333330F00F0
+          00F03333F37F773777373330330FFFFFFFF03337FF7F3F3FF3F73339030F0800
+          F0F033377F7F737737373339900FFFFFFFF03FF7777F3FF3FFF70999990F00F0
+          00007777777F7737777709999990FFF0FF0377777777FF37F3730999999908F0
+          F033777777777337F73309999990FFF0033377777777FFF77333099999000000
+          3333777777777777333333399033333333333337773333333333333903333333
+          3333333773333333333333303333333333333337333333333333}
+        NumGlyphs = 2
+        ParentFont = False
+        OnClick = SB_ExportClick
+      end
+      object CheckBox1: TCheckBox
+        Left = 14
+        Top = 34
+        Width = 93
+        Height = 17
+        Caption = 'Auto update'
+        Enabled = False
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -11
+        Font.Name = 'Tahoma'
+        Font.Style = [fsBold]
+        ParentFont = False
+        TabOrder = 0
+      end
     end
   end
   object ChartEditor1: TChartEditor
@@ -142,6 +196,10 @@ object Form_LP: TForm_LP
     Height = 0
     Width = 0
     Left = 192
+    Top = 64
+  end
+  object SaveDialog1: TSaveDialog
+    Left = 368
     Top = 64
   end
 end
