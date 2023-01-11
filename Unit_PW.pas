@@ -1007,6 +1007,7 @@ var
 begin
   if ((PX>0) and (PY>0)) then
   begin
+    if CB_Mag.ItemIndex =-1 then CB_Mag.ItemIndex := 01;
     case CB_Mag.ItemIndex of
       0: lMag := 10;
       1: lMag := 25;

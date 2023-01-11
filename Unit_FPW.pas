@@ -379,6 +379,7 @@ var
 begin
   if ((PW>0) and (PH>0)) then
   begin
+    if CB_Mag.ItemIndex =-1 then CB_Mag.ItemIndex := 01;
     case CB_Mag.ItemIndex of
       0: lMag := 10;
       1: lMag := 25;
@@ -439,6 +440,7 @@ begin
     begin
       case SaveDialog1.FilterIndex of
         3:begin
+          if CB_Mag.ItemIndex =-1 then CB_Mag.ItemIndex := 01;
           case CB_Mag.ItemIndex of
             0: lMag := 10;
             1: lMag := 25;

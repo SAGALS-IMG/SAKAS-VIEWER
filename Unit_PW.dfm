@@ -405,6 +405,10 @@ object Form_PW: TForm_PW
       TabOrder = 2
       object TabSheet1: TTabSheet
         Caption = 'Info.'
+        ExplicitLeft = 0
+        ExplicitTop = 0
+        ExplicitWidth = 0
+        ExplicitHeight = 0
         object Panel101: TPanel
           Left = 0
           Top = 0
@@ -826,6 +830,10 @@ object Form_PW: TForm_PW
       object TabSheet2: TTabSheet
         Caption = 'B&&C'
         ImageIndex = 5
+        ExplicitLeft = 0
+        ExplicitTop = 0
+        ExplicitWidth = 0
+        ExplicitHeight = 0
         object GroupBox121: TGroupBox
           Left = 0
           Top = 0
@@ -1633,6 +1641,10 @@ object Form_PW: TForm_PW
       object TabSheet3: TTabSheet
         Caption = 'Trans.'
         ImageIndex = 1
+        ExplicitLeft = 0
+        ExplicitTop = 0
+        ExplicitWidth = 0
+        ExplicitHeight = 0
         object GroupBox131: TGroupBox
           Left = 0
           Top = 37
@@ -2117,6 +2129,10 @@ object Form_PW: TForm_PW
       object TabSheet4: TTabSheet
         Caption = 'Filter'
         ImageIndex = 2
+        ExplicitLeft = 0
+        ExplicitTop = 0
+        ExplicitWidth = 0
+        ExplicitHeight = 0
         object GroupBox141: TGroupBox
           Left = 0
           Top = 37
@@ -2590,6 +2606,10 @@ object Form_PW: TForm_PW
       object TabSheet5: TTabSheet
         Caption = 'FFT'
         ImageIndex = 5
+        ExplicitLeft = 0
+        ExplicitTop = 0
+        ExplicitWidth = 0
+        ExplicitHeight = 0
         object GroupBox151: TGroupBox
           Left = 0
           Top = 37
@@ -3085,6 +3105,10 @@ object Form_PW: TForm_PW
       object TabSheet6: TTabSheet
         Caption = 'Analyze'
         ImageIndex = 4
+        ExplicitLeft = 0
+        ExplicitTop = 0
+        ExplicitWidth = 0
+        ExplicitHeight = 0
         object GroupBox161: TGroupBox
           Left = 0
           Top = 83
@@ -3430,6 +3454,10 @@ object Form_PW: TForm_PW
         ImageIndex = 4
         OnHide = TabSheet7Hide
         OnShow = TabSheet7Show
+        ExplicitLeft = 0
+        ExplicitTop = 0
+        ExplicitWidth = 0
+        ExplicitHeight = 0
         object GroupBox171: TGroupBox
           Left = 0
           Top = 145
