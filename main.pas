@@ -236,9 +236,9 @@ var
   LDirList : TStringDynArray;
   li : longint;
 begin
-  Edit_ImgN.Text :=  IniF.ReadString( 'Proc_'+Proc_N.ToString, 'Image_Num', '');
+  Edit_ImgN.Text :=  IniF.ReadString( 'Proc_'+Proc_N.ToString, 'Image_Num', '0');
   Edit_ST.Text :=  IniF.ReadString( 'Proc_'+Proc_N.ToString, 'ST', '0');
-  Edit_End.Text :=  IniF.ReadString( 'Proc_'+Proc_N.ToString, 'End', '');
+  Edit_End.Text :=  IniF.ReadString( 'Proc_'+Proc_N.ToString, 'End', '0');
   RG_Format.ItemIndex := IniF.ReadInteger( 'Proc_'+Proc_N.ToString, 'Format', 1);
   Label_Method_Name.Caption := IniF.ReadString('Proc_'+Proc_N.ToString, 'Method', '');
 

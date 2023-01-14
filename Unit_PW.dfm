@@ -59,6 +59,11 @@ object Form_PW: TForm_PW
         Height = 50
         Caption = 'ReDraw'
         Flat = True
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clNavy
+        Font.Height = -12
+        Font.Name = 'Tahoma'
+        Font.Style = [fsBold]
         Glyph.Data = {
           76010000424D7601000000000000760000002800000020000000100000000100
           04000000000000010000120B0000120B00001000000000000000000000000000
@@ -74,6 +79,7 @@ object Form_PW: TForm_PW
           5555577F77555555555500075555555555557777555555555555}
         Layout = blGlyphTop
         NumGlyphs = 2
+        ParentFont = False
         OnClick = SB_RedrawClick
       end
       object Bevel2: TBevel
@@ -104,9 +110,9 @@ object Form_PW: TForm_PW
         Shape = stRoundRect
       end
       object Label_ROI_Size: TLabel
-        Left = 40
+        Left = 67
         Top = 109
-        Width = 90
+        Width = 75
         Height = 14
         Alignment = taCenter
         AutoSize = False
@@ -141,6 +147,11 @@ object Form_PW: TForm_PW
         Height = 50
         Caption = 'Copy'
         Flat = True
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clNavy
+        Font.Height = -12
+        Font.Name = 'Tahoma'
+        Font.Style = [fsBold]
         Glyph.Data = {
           76010000424D7601000000000000760000002800000020000000100000000100
           04000000000000010000130B0000130B00001000000000000000000000000000
@@ -156,6 +167,7 @@ object Form_PW: TForm_PW
           3333777777333333333333333333333333333333333333333333}
         Layout = blGlyphTop
         NumGlyphs = 2
+        ParentFont = False
         OnClick = SB_CopyClick
       end
       object SB_Save: TSpeedButton
@@ -165,6 +177,11 @@ object Form_PW: TForm_PW
         Height = 50
         Caption = 'Save as'
         Flat = True
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clNavy
+        Font.Height = -12
+        Font.Name = 'Tahoma'
+        Font.Style = [fsBold]
         Glyph.Data = {
           76010000424D7601000000000000760000002800000020000000100000000100
           04000000000000010000120B0000120B00001000000000000000000000000000
@@ -180,6 +197,7 @@ object Form_PW: TForm_PW
           33333337FFFFFFF7F33333300000000033333337777777773333}
         Layout = blGlyphTop
         NumGlyphs = 2
+        ParentFont = False
         OnClick = SB_SaveClick
       end
       object Label2: TLabel
@@ -203,6 +221,23 @@ object Form_PW: TForm_PW
         Font.Style = [fsBold]
         ParentFont = False
         OnClick = SB_Memo_CLRClick
+      end
+      object Label3: TLabel
+        Left = 25
+        Top = 109
+        Width = 32
+        Height = 14
+        Alignment = taCenter
+        AutoSize = False
+        Caption = 'ROI'
+        Color = clMenuBar
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clRed
+        Font.Height = -12
+        Font.Name = 'Tahoma'
+        Font.Style = [fsBold]
+        ParentColor = False
+        ParentFont = False
       end
       object Edit_PMin: TEdit
         Left = 17
@@ -405,10 +440,6 @@ object Form_PW: TForm_PW
       TabOrder = 2
       object TabSheet1: TTabSheet
         Caption = 'Info.'
-        ExplicitLeft = 0
-        ExplicitTop = 0
-        ExplicitWidth = 0
-        ExplicitHeight = 0
         object Panel101: TPanel
           Left = 0
           Top = 0
@@ -830,10 +861,6 @@ object Form_PW: TForm_PW
       object TabSheet2: TTabSheet
         Caption = 'B&&C'
         ImageIndex = 5
-        ExplicitLeft = 0
-        ExplicitTop = 0
-        ExplicitWidth = 0
-        ExplicitHeight = 0
         object GroupBox121: TGroupBox
           Left = 0
           Top = 0
@@ -1641,10 +1668,6 @@ object Form_PW: TForm_PW
       object TabSheet3: TTabSheet
         Caption = 'Trans.'
         ImageIndex = 1
-        ExplicitLeft = 0
-        ExplicitTop = 0
-        ExplicitWidth = 0
-        ExplicitHeight = 0
         object GroupBox131: TGroupBox
           Left = 0
           Top = 37
@@ -1720,6 +1743,11 @@ object Form_PW: TForm_PW
             Height = 50
             Caption = 'Rotation'
             Flat = True
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clNavy
+            Font.Height = -12
+            Font.Name = 'Tahoma'
+            Font.Style = [fsBold]
             Glyph.Data = {
               76010000424D7601000000000000760000002800000020000000100000000100
               04000000000000010000130B0000130B00001000000000000000000000000000
@@ -1735,6 +1763,7 @@ object Form_PW: TForm_PW
               3393333777333777337333333999993333333333377777333333}
             Layout = blGlyphTop
             NumGlyphs = 2
+            ParentFont = False
             OnClick = Image_Tr
           end
           object Bevel133: TBevel
@@ -1752,6 +1781,12 @@ object Form_PW: TForm_PW
             Height = 25
             Caption = 'Ver. flip'
             Flat = True
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clNavy
+            Font.Height = -12
+            Font.Name = 'Tahoma'
+            Font.Style = [fsBold]
+            ParentFont = False
             OnClick = Image_Tr
           end
           object SB_Img_HF: TSpeedButton
@@ -1762,6 +1797,12 @@ object Form_PW: TForm_PW
             Height = 25
             Caption = 'Hor. flip'
             Flat = True
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clNavy
+            Font.Height = -12
+            Font.Name = 'Tahoma'
+            Font.Style = [fsBold]
+            ParentFont = False
             OnClick = Image_Tr
           end
           object SB_Img_Shift: TSpeedButton
@@ -1772,6 +1813,11 @@ object Form_PW: TForm_PW
             Height = 50
             Caption = 'X-Y Shift'
             Flat = True
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clNavy
+            Font.Height = -12
+            Font.Name = 'Tahoma'
+            Font.Style = [fsBold]
             Glyph.Data = {
               76010000424D7601000000000000760000002800000020000000100000000100
               04000000000000010000120B0000120B00001000000000000000000000000000
@@ -1787,6 +1833,7 @@ object Form_PW: TForm_PW
               3333377733333333333333333333333333333333333333333333}
             Layout = blGlyphTop
             NumGlyphs = 2
+            ParentFont = False
             OnClick = Image_Tr
           end
           object Bevel136: TBevel
@@ -1811,6 +1858,12 @@ object Form_PW: TForm_PW
             Height = 25
             Caption = 'Crop'
             Flat = True
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clNavy
+            Font.Height = -12
+            Font.Name = 'Tahoma'
+            Font.Style = [fsBold]
+            ParentFont = False
             OnClick = Image_Tr
           end
           object SB_Img_Bin: TSpeedButton
@@ -1821,6 +1874,12 @@ object Form_PW: TForm_PW
             Height = 25
             Caption = 'Binning'
             Flat = True
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clNavy
+            Font.Height = -12
+            Font.Name = 'Tahoma'
+            Font.Style = [fsBold]
+            ParentFont = False
             OnClick = Image_Tr
           end
           object SB_Img_Undo: TSpeedButton
@@ -1998,6 +2057,12 @@ object Form_PW: TForm_PW
             Height = 25
             Caption = 'Z addition'
             Flat = True
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clNavy
+            Font.Height = -12
+            Font.Name = 'Tahoma'
+            Font.Style = [fsBold]
+            ParentFont = False
             OnClick = SB_Img_Z_AddClick
           end
           object SB_Img_ZFlip: TSpeedButton
@@ -2129,10 +2194,6 @@ object Form_PW: TForm_PW
       object TabSheet4: TTabSheet
         Caption = 'Filter'
         ImageIndex = 2
-        ExplicitLeft = 0
-        ExplicitTop = 0
-        ExplicitWidth = 0
-        ExplicitHeight = 0
         object GroupBox141: TGroupBox
           Left = 0
           Top = 37
@@ -2187,6 +2248,11 @@ object Form_PW: TForm_PW
               Height = 25
               Caption = 'Calc'
               Flat = True
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = clNavy
+              Font.Height = -12
+              Font.Name = 'Tahoma'
+              Font.Style = [fsBold]
               Glyph.Data = {
                 76010000424D7601000000000000760000002800000020000000100000000100
                 04000000000000010000120B0000120B00001000000000000000000000000000
@@ -2201,6 +2267,7 @@ object Form_PW: TForm_PW
                 0333337F777777737F333308888888880333337F333333337F33330888888888
                 03333373FFFFFFFF733333700000000073333337777777773333}
               NumGlyphs = 2
+              ParentFont = False
               OnClick = SB_FilClick
             end
             object SB_Fil_Undo: TSpeedButton
@@ -2210,6 +2277,11 @@ object Form_PW: TForm_PW
               Height = 25
               Caption = 'Undo'
               Flat = True
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = clGreen
+              Font.Height = -12
+              Font.Name = 'Tahoma'
+              Font.Style = [fsBold]
               Glyph.Data = {
                 76010000424D7601000000000000760000002800000020000000100000000100
                 04000000000000010000130B0000130B00001000000000000000000000000000
@@ -2224,6 +2296,7 @@ object Form_PW: TForm_PW
                 70E337F33333333337F3E0FFFFFFFFFFF0E337FFFFFFFFFFF7F3E00000000000
                 00E33777777777777733EEEEEEEEEEEEEEE33333333333333333}
               NumGlyphs = 2
+              ParentFont = False
               OnClick = SB_Fil_UndoClick
             end
             object Edit_Fil_P1: TEdit
@@ -2278,8 +2351,8 @@ object Form_PW: TForm_PW
               ItemHeight = 14
               Items.Strings = (
                 'Binarization (Th: P1)'
-                'n-Value (n<5: P1)'
-                'Median (Size<5: P1)'
+                'n-Value (n<6: P1)'
+                'Median (Size<6: P1)'
                 'Gaussian ('#963': P1; Size: P2)'
                 'Sharpen'
                 'Edge enhanc (X: P1; Y: P2)'
@@ -2369,6 +2442,11 @@ object Form_PW: TForm_PW
             Height = 25
             Caption = 'Calc'
             Flat = True
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clNavy
+            Font.Height = -12
+            Font.Name = 'Tahoma'
+            Font.Style = [fsBold]
             Glyph.Data = {
               76010000424D7601000000000000760000002800000020000000100000000100
               04000000000000010000120B0000120B00001000000000000000000000000000
@@ -2383,6 +2461,7 @@ object Form_PW: TForm_PW
               0333337F777777737F333308888888880333337F333333337F33330888888888
               03333373FFFFFFFF733333700000000073333337777777773333}
             NumGlyphs = 2
+            ParentFont = False
             OnClick = SB_Fil_MathClick
           end
           object CB_MathType: TComboBox
@@ -2473,6 +2552,11 @@ object Form_PW: TForm_PW
             Height = 25
             Caption = 'Mask'
             Flat = True
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clNavy
+            Font.Height = -12
+            Font.Name = 'Tahoma'
+            Font.Style = [fsBold]
             Glyph.Data = {
               76010000424D7601000000000000760000002800000020000000100000000100
               04000000000000010000120B0000120B00001000000000000000000000000000
@@ -2487,6 +2571,7 @@ object Form_PW: TForm_PW
               0FF07773FFFFF7337F37003000000FFF0F037737777773337F7333330FFFFFFF
               003333337FFFFFFF773333330000000003333333777777777333}
             NumGlyphs = 2
+            ParentFont = False
             OnClick = SB_Fil_MathClick
           end
           object CB_Mask_Type: TComboBox
@@ -2606,10 +2691,6 @@ object Form_PW: TForm_PW
       object TabSheet5: TTabSheet
         Caption = 'FFT'
         ImageIndex = 5
-        ExplicitLeft = 0
-        ExplicitTop = 0
-        ExplicitWidth = 0
-        ExplicitHeight = 0
         object GroupBox151: TGroupBox
           Left = 0
           Top = 37
@@ -2670,7 +2751,7 @@ object Form_PW: TForm_PW
             Caption = 'FFT'
             Flat = True
             Font.Charset = DEFAULT_CHARSET
-            Font.Color = clPurple
+            Font.Color = clNavy
             Font.Height = -12
             Font.Name = 'Tahoma'
             Font.Style = [fsBold]
@@ -2700,7 +2781,7 @@ object Form_PW: TForm_PW
             Caption = 'IFFT'
             Flat = True
             Font.Charset = DEFAULT_CHARSET
-            Font.Color = clPurple
+            Font.Color = clNavy
             Font.Height = -12
             Font.Name = 'Tahoma'
             Font.Style = [fsBold]
@@ -2730,7 +2811,7 @@ object Form_PW: TForm_PW
             Caption = 'Filter'
             Flat = True
             Font.Charset = DEFAULT_CHARSET
-            Font.Color = clPurple
+            Font.Color = clNavy
             Font.Height = -12
             Font.Name = 'Tahoma'
             Font.Style = [fsBold]
@@ -2767,7 +2848,7 @@ object Form_PW: TForm_PW
             Caption = 'Restore'
             Flat = True
             Font.Charset = DEFAULT_CHARSET
-            Font.Color = clPurple
+            Font.Color = clNavy
             Font.Height = -12
             Font.Name = 'Tahoma'
             Font.Style = [fsBold]
@@ -3105,10 +3186,6 @@ object Form_PW: TForm_PW
       object TabSheet6: TTabSheet
         Caption = 'Analyze'
         ImageIndex = 4
-        ExplicitLeft = 0
-        ExplicitTop = 0
-        ExplicitWidth = 0
-        ExplicitHeight = 0
         object GroupBox161: TGroupBox
           Left = 0
           Top = 83
@@ -3343,6 +3420,11 @@ object Form_PW: TForm_PW
             Height = 50
             Caption = 'Analyze'
             Flat = True
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clNavy
+            Font.Height = -12
+            Font.Name = 'Tahoma'
+            Font.Style = [fsBold]
             Glyph.Data = {
               76010000424D7601000000000000760000002800000020000000100000000100
               04000000000000010000120B0000120B00001000000000000000000000000000
@@ -3358,6 +3440,7 @@ object Form_PW: TForm_PW
               7777777777777777777733333333333333333333333333333333}
             Layout = blGlyphTop
             NumGlyphs = 2
+            ParentFont = False
             OnClick = SB_AnalyClick
           end
           object SB_Ana_Copy: TSpeedButton
@@ -3367,6 +3450,11 @@ object Form_PW: TForm_PW
             Height = 50
             Caption = 'Copy'
             Flat = True
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clNavy
+            Font.Height = -12
+            Font.Name = 'Tahoma'
+            Font.Style = [fsBold]
             Glyph.Data = {
               76010000424D7601000000000000760000002800000020000000100000000100
               04000000000000010000130B0000130B00001000000000000000000000000000
@@ -3382,6 +3470,7 @@ object Form_PW: TForm_PW
               3333777777333333333333333333333333333333333333333333}
             Layout = blGlyphTop
             NumGlyphs = 2
+            ParentFont = False
             OnClick = SB_Ana_CopyClick
           end
           object Label161: TLabel
@@ -3454,10 +3543,6 @@ object Form_PW: TForm_PW
         ImageIndex = 4
         OnHide = TabSheet7Hide
         OnShow = TabSheet7Show
-        ExplicitLeft = 0
-        ExplicitTop = 0
-        ExplicitWidth = 0
-        ExplicitHeight = 0
         object GroupBox171: TGroupBox
           Left = 0
           Top = 145
@@ -3512,6 +3597,11 @@ object Form_PW: TForm_PW
               Height = 25
               Caption = 'Load DCM Header'
               Flat = True
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = clNavy
+              Font.Height = -12
+              Font.Name = 'Tahoma'
+              Font.Style = [fsBold]
               Glyph.Data = {
                 76010000424D7601000000000000760000002800000020000000100000000100
                 04000000000000010000120B0000120B00001000000000000000000000000000
@@ -3526,6 +3616,7 @@ object Form_PW: TForm_PW
                 55557FFFFFFFFF7555550000000000555555777777777755555550FBFB055555
                 5555575FFF755555555557000075555555555577775555555555}
               NumGlyphs = 2
+              ParentFont = False
               OnClick = SB_DCM_Load_HeadClick
             end
             object SB_DCM_Save_Head: TSpeedButton
@@ -3535,6 +3626,11 @@ object Form_PW: TForm_PW
               Height = 25
               Caption = 'Save DCM Header'
               Flat = True
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = clNavy
+              Font.Height = -12
+              Font.Name = 'Tahoma'
+              Font.Style = [fsBold]
               Glyph.Data = {
                 76010000424D7601000000000000760000002800000020000000100000000100
                 04000000000000010000130B0000130B00001000000000000000000000000000
@@ -3549,6 +3645,7 @@ object Form_PW: TForm_PW
                 99337F3FF7F3733777F30F08F0F0337999337F7737F73F7777330FFFF0039999
                 93337FFFF7737777733300000033333333337777773333333333}
               NumGlyphs = 2
+              ParentFont = False
               OnClick = SB_DCM_Save_HeadClick
             end
             object SB_DCM_Editor: TSpeedButton
@@ -3558,6 +3655,11 @@ object Form_PW: TForm_PW
               Height = 25
               Caption = 'DICOM Editor'
               Flat = True
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = clNavy
+              Font.Height = -12
+              Font.Name = 'Tahoma'
+              Font.Style = [fsBold]
               Glyph.Data = {
                 76010000424D7601000000000000760000002800000020000000100000000100
                 04000000000000010000120B0000120B00001000000000000000000000000000
@@ -3572,6 +3674,7 @@ object Form_PW: TForm_PW
                 3333333373FF7333333333333000333333333333377733333333333333333333
                 3333333333333333333333333333333333333333333333333333}
               NumGlyphs = 2
+              ParentFont = False
               OnClick = SB_DCM_EditorClick
             end
             object SB_DCM_Import: TSpeedButton
@@ -3581,6 +3684,11 @@ object Form_PW: TForm_PW
               Height = 25
               Caption = 'Import from SAKAS'
               Flat = True
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = clNavy
+              Font.Height = -12
+              Font.Name = 'Tahoma'
+              Font.Style = [fsBold]
               Glyph.Data = {
                 76010000424D7601000000000000760000002800000020000000100000000100
                 04000000000000010000130B0000130B00001000000000000000000000000000
@@ -3595,6 +3703,7 @@ object Form_PW: TForm_PW
                 3333777777777777333333399033333333333337773333333333333903333333
                 3333333773333333333333303333333333333337333333333333}
               NumGlyphs = 2
+              ParentFont = False
               OnClick = SB_DCM_ImportClick
             end
           end
@@ -3793,6 +3902,11 @@ object Form_PW: TForm_PW
             Height = 50
             Caption = 'Export'
             Flat = True
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clNavy
+            Font.Height = -12
+            Font.Name = 'Tahoma'
+            Font.Style = [fsBold]
             Glyph.Data = {
               76010000424D7601000000000000760000002800000020000000100000000100
               04000000000000010000120B0000120B00001000000000000000000000000000
@@ -3808,6 +3922,7 @@ object Form_PW: TForm_PW
               33333337FFFFFFF7F33333300000000033333337777777773333}
             Layout = blGlyphTop
             NumGlyphs = 2
+            ParentFont = False
             OnClick = SB_DCM_ExportClick
           end
           object Label171: TLabel
@@ -3831,6 +3946,11 @@ object Form_PW: TForm_PW
             Height = 50
             Caption = 'STOP'
             Flat = True
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clRed
+            Font.Height = -12
+            Font.Name = 'Tahoma'
+            Font.Style = [fsBold]
             Glyph.Data = {
               76010000424D7601000000000000760000002800000020000000100000000100
               04000000000000010000130B0000130B00001000000000000000000000000000
@@ -3846,6 +3966,7 @@ object Form_PW: TForm_PW
               3333333777333777333333333999993333333333377777333333}
             Layout = blGlyphTop
             NumGlyphs = 2
+            ParentFont = False
             OnClick = SB_DCM_STOPClick
           end
           object Label201: TLabel

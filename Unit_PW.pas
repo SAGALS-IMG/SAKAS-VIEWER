@@ -37,6 +37,7 @@ type
     Shape1: TShape;
     Label1: TLabel;
     Label2: TLabel;
+    Label3: TLabel;
     Label5: TLabel;
     Label_ROI_Size: TLabel;
     Edit_PMin: TEdit;
@@ -526,6 +527,10 @@ begin
     Edit_DCM_a.Text :=Ini.ReadString('Form_PW', 'DCM_a', '100' );
     Edit_DCM_b.Text :=Ini.ReadString('Form_PW', 'DCM_b', '100' );
     CB_UID.Checked := Ini.ReadBool('Form_PW', 'DCM_UID', false );
+
+    RB_PMinMax_M.Checked := Ini.ReadBool('Form_PW', 'Min_Max_M', true );
+    RB_PMinMax_A1.Checked := Ini.ReadBool('Form_PW', 'Min_Max_A1', false );
+    RB_PMinMax_A2.Checked := Ini.ReadBool('Form_PW', 'Min_Max_A2', false );
   finally
     Ini.Free;
   end;
@@ -580,6 +585,10 @@ begin
     Ini.WriteString('Form_PW', 'DCM_a', Edit_DCM_a.Text );
     Ini.WriteString('Form_PW', 'DCM_b', Edit_DCM_b.Text );
     Ini.WriteBool('Form_PW', 'DCM_UID', CB_UID.Checked );
+
+    Ini.WriteBool('Form_PW', 'Min_Max_M', RB_PMinMax_M.Checked );
+    Ini.WriteBool('Form_PW', 'Min_Max_A1', RB_PMinMax_A1.Checked );
+    Ini.WriteBool('Form_PW', 'Min_Max_A2', RB_PMinMax_A2.Checked );
   finally
     Ini.Free;
   end;
@@ -1244,7 +1253,7 @@ end;
 procedure TForm_PW.Chart_CBMouseUp(Sender: TObject; Button: TMouseButton;
   Shift: TShiftState; X, Y: Integer);
 var
-  li:longint;
+  li, lj:longint;
   lX, lY :double;
 begin
   if Button=mbRight then
@@ -1258,12 +1267,24 @@ begin
       Draw_Data(Sender);
     end;
   end;
+//  Series2.XValue[0] := StrToFloat(Edit_PMin.Text);
+//  Series2.XValue[Series2.Count-1] := StrToFloat(Edit_PMax.Text);
+//  Edit_PMin.Text := Series2.MinXValue.ToString;
+//  Edit_PMax.Text := Series2.MaxXValue.ToString;
   for li:=1 to Series2.Count-2 do
   begin
     if Series2.XValue[li]<Series2.XValue[0] then
       Series2.XValue[li] := Series2.XValue[0]+(Series2.XValue[Series2.Count-1]-Series2.XValue[0])*0.1;
     if Series2.XValue[li]>Series2.XValue[Series2.Count-1] then
       Series2.XValue[li] := Series2.XValue[Series2.Count-1]-(Series2.XValue[Series2.Count-1]-Series2.XValue[0])*0.1;
+    if Series2.Count>3 then
+    begin
+      for lj:=li+1 to Series2.Count-2 do
+      begin
+        if Series2.XValue[lj]<Series2.XValue[li] then
+          Series2.XValue[lj] := Series2.XValue[li]+(Series2.XValue[Series2.Count-1]-Series2.XValue[0])*0.05;
+      end;
+    end;
   end;
   Make_CB(Sender);
   Draw_Data(Sender);

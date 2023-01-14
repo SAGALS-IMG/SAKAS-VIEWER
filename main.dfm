@@ -155,7 +155,7 @@ object Form_main: TForm_main
         OnClick = SB_DirClick
       end
       object SB_Help: TSpeedButton
-        Left = 345
+        Left = 344
         Top = 68
         Width = 64
         Height = 23
@@ -165,7 +165,7 @@ object Form_main: TForm_main
         Font.Color = clWindowText
         Font.Height = -9
         Font.Name = 'Tahoma'
-        Font.Style = []
+        Font.Style = [fsBold]
         NumGlyphs = 2
         ParentFont = False
         OnClick = SB_HelpClick
@@ -248,7 +248,7 @@ object Form_main: TForm_main
         Top = 62
         Width = 116
         Height = 26
-        Caption = '2 Images Seg.'
+        Caption = 'Images Seg.'
         Flat = True
         Glyph.Data = {
           76010000424D7601000000000000760000002800000020000000100000000100
@@ -323,7 +323,7 @@ object Form_main: TForm_main
         TabOrder = 3
       end
       object CB_Log: TCheckBox
-        Left = 303
+        Left = 299
         Top = 71
         Width = 41
         Height = 17
@@ -332,7 +332,7 @@ object Form_main: TForm_main
         Font.Color = clWindowText
         Font.Height = -9
         Font.Name = 'Tahoma'
-        Font.Style = []
+        Font.Style = [fsBold]
         ParentFont = False
         TabOrder = 4
       end
@@ -846,7 +846,7 @@ object Form_main: TForm_main
     Width = 418
     Height = 137
     Align = alClient
-    Caption = 'Opened image'
+    Caption = 'List of opened images'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -12
@@ -865,6 +865,7 @@ object Form_main: TForm_main
       Color = 15529196
       ItemHeight = 14
       TabOrder = 0
+      OnClick = LB_PWClick
     end
   end
   object OpenDialog1: TOpenDialog
