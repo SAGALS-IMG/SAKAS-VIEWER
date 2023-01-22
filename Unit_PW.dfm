@@ -426,7 +426,7 @@ object Form_PW: TForm_PW
       Top = 161
       Width = 377
       Height = 456
-      ActivePage = TabSheet3
+      ActivePage = TabSheet4
       Align = alTop
       DoubleBuffered = False
       Font.Charset = DEFAULT_CHARSET
@@ -2003,8 +2003,6 @@ object Form_PW: TForm_PW
           ParentBackground = False
           ParentColor = False
           TabOrder = 1
-          ExplicitTop = 290
-          ExplicitHeight = 137
           object Bevel141: TBevel
             Left = 224
             Top = 20
@@ -2236,16 +2234,25 @@ object Form_PW: TForm_PW
             Align = alTop
             BevelOuter = bvNone
             TabOrder = 0
+            ExplicitLeft = 3
+            ExplicitTop = 10
+            object Bevel150: TBevel
+              Left = 178
+              Top = 3
+              Width = 80
+              Height = 25
+              Style = bsRaised
+            end
             object Label141: TLabel
-              Left = 182
-              Top = 6
+              Left = 264
+              Top = 8
               Width = 16
               Height = 14
               Caption = 'P1'
             end
             object Label142: TLabel
-              Left = 182
-              Top = 34
+              Left = 264
+              Top = 36
               Width = 16
               Height = 14
               Caption = 'P2'
@@ -2322,18 +2329,47 @@ object Form_PW: TForm_PW
               ParentFont = False
               OnClick = SB_Fil_UndoClick
             end
-            object Edit_Fil_P1: TEdit
-              Left = 212
+            object SB_STOP: TSpeedButton
+              Left = 178
               Top = 3
-              Width = 78
+              Width = 80
+              Height = 25
+              Caption = 'STOP'
+              Flat = True
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = clRed
+              Font.Height = -12
+              Font.Name = 'Tahoma'
+              Font.Style = [fsBold]
+              Glyph.Data = {
+                76010000424D7601000000000000760000002800000020000000100000000100
+                04000000000000010000130B0000130B00001000000000000000000000000000
+                800000800000008080008000000080008000808000007F7F7F00BFBFBF000000
+                FF0000FF000000FFFF00FF000000FF00FF00FFFF0000FFFFFF00333333333333
+                33333333333333333333EEEEEEEEEEEEEEE333FFFFFFFFFFFFF3E00000000000
+                00E337777777777777F3E0F77777777770E337F33333333337F3E0F333333333
+                70E337F33333333337F3E0F33333333370E337F333FFFFF337F3E0F330000033
+                70E337F3377777F337F3E0F33000003370E337F3377777F337F3E0F330000033
+                70E337F3377777F337F3E0F33000003370E337F3377777F337F3E0F330000033
+                70E337F33777773337F3E0F33333333370E337F33333333337F3E0F333333333
+                70E337F33333333337F3E0FFFFFFFFFFF0E337FFFFFFFFFFF7F3E00000000000
+                00E33777777777777733EEEEEEEEEEEEEEE33333333333333333}
+              NumGlyphs = 2
+              ParentFont = False
+              OnClick = SB_STOPClick
+            end
+            object Edit_Fil_P1: TEdit
+              Left = 288
+              Top = 3
+              Width = 73
               Height = 22
               TabOrder = 0
               Text = '2'
             end
             object Edit_Fil_P2: TEdit
-              Left = 212
+              Left = 288
               Top = 31
-              Width = 78
+              Width = 73
               Height = 22
               TabOrder = 1
               Text = '2'
@@ -2379,7 +2415,8 @@ object Form_PW: TForm_PW
                 'Gaussian ('#963': P1; Size: P2)'
                 'Sharpen'
                 'Edge enhanc (X: P1; Y: P2)'
-                'Custom filter (Size: P1)')
+                'Custom filter (Size: P1)'
+                'Thinning')
               TabOrder = 1
               OnClick = LB_Filter_TypeClick
             end

@@ -569,6 +569,14 @@ object Form_main: TForm_main
       Font.Style = [fsBold]
       ParentFont = False
     end
+    object SB_ROI: TSpeedButton
+      Left = 310
+      Top = 272
+      Width = 53
+      Height = 22
+      Flat = True
+      OnClick = SB_ROIClick
+    end
     object CB_Proc: TComboBox
       Left = 75
       Top = 44

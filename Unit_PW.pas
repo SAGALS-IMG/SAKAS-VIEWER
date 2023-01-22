@@ -208,10 +208,12 @@ type
     Panel141: TPanel;
     Label141: TLabel;
     Label142: TLabel;
-    Bevel145: TBevel;
     Bevel144: TBevel;
+    Bevel145: TBevel;
+    Bevel150: TBevel;
     SB_Fil: TSpeedButton;
     SB_Fil_Undo: TSpeedButton;
+    SB_STOP: TSpeedButton;
     Edit_Fil_P1: TEdit;
     Edit_Fil_P2: TEdit;
     CB_Fil_ROI: TCheckBox;
@@ -439,6 +441,7 @@ type
     procedure n_Value(P1:longint;Sender: TObject);
     procedure Median(P1:longint;Sender:TObject);
     procedure Kern_Fil(KS:longint;Sender:TObject);
+    procedure Thinning(Sender: TObject);
     procedure SB_FilClick(Sender: TObject);
     procedure SB_Fil_UndoClick(Sender: TObject);
     procedure LB_Filter_TypeClick(Sender: TObject);
@@ -471,6 +474,7 @@ type
     procedure TabSheet7Show(Sender: TObject);
     procedure TabSheet7Hide(Sender: TObject);
     procedure SB_Sep_imgClick(Sender: TObject);
+    procedure SB_STOPClick(Sender: TObject);
   private
     { Private éŒ¾ }
   public
@@ -478,7 +482,7 @@ type
     Data, OrigData, Buf1, Buf2 : array of array of double;
     Fil_Kern : array[-10..10, -10..10] of double;
 
-    PX, PY, OX, OY, PZ, STZ, ENDZ, Proc_N, FileType, FN_Digit : longint;
+    PX, PY, OX, OY, OFFX, OFFY, PZ, STZ, ENDZ, Proc_N, FileType, FN_Digit : longint;
     Op_STZ, Op_EndZ : longint;
     FN, FN_ExtStr, Sample_Name, Method_Name : string;
     LP : TForm_LP;
@@ -688,12 +692,12 @@ begin
   try
     FS := TfileStream.Create(File_Name,fmOpenRead);
     if POS('*',FN)=0 then
-      FS.Position := Int64(TZ)*PX*PY*2;
+      FS.Position := Int64(TZ)*OX*OY*2+OX*OFFY*2;
     for lj:=0 to PY-1 do
     begin
-      FS.ReadBuffer(lData,PX*2);
+      FS.ReadBuffer(lData,OX*2);
       for li:=0 to PX-1 do
-        Data[lj,li] := lData[li];
+        Data[lj,li] := lData[li+OFFX];
     end;
   finally
     FS.Free;
@@ -710,12 +714,12 @@ begin
   try
     FS := TfileStream.Create(File_Name,fmOpenRead);
     if POS('*',FN)=0 then
-      FS.Position := Int64(TZ)*PX*PY*4;
+      FS.Position := Int64(TZ)*OX*OY*4+OX*OFFY*4;
     for lj:=0 to PY-1 do
     begin
-      FS.ReadBuffer(lData,PX*4);
+      FS.ReadBuffer(lData,OX*4);
       for li:=0 to PX-1 do
-        Data[lj,li] := lData[li];
+        Data[lj,li] := lData[li+OFFX];
     end;
   finally
     FS.Free;
@@ -732,12 +736,12 @@ begin
   try
     FS := TfileStream.Create(File_Name,fmOpenRead);
     if POS('*',FN)=0 then
-      FS.Position := Int64(TZ)*PX*PY*4;
+      FS.Position := Int64(TZ)*OX*OY*4+OX*OFFY*4;
     for lj:=0 to PY-1 do
     begin
-      FS.ReadBuffer(lData,PX*4);
+      FS.ReadBuffer(lData,OX*4);
       for li:=0 to PX-1 do
-        Data[lj,li] := lData[li];
+        Data[lj,li] := lData[li+OFFX];
     end;
   finally
     FS.Free;
@@ -754,12 +758,12 @@ begin
   try
     FS := TfileStream.Create(File_Name,fmOpenRead);
     if POS('*',FN)=0 then
-      FS.Position := Int64(TZ)*PX*PY*8;
+      FS.Position := Int64(TZ)*OX*OY*8+OX*OFFY*8;
     for lj:=0 to PY-1 do
     begin
-      FS.ReadBuffer(lData,PX*8);
+      FS.ReadBuffer(lData,OX*8);
       for li:=0 to PX-1 do
-        Data[lj,li] := lData[li];
+        Data[lj,li] := lData[li+OFFX];
     end;
   finally
     FS.Free;
@@ -1902,7 +1906,7 @@ begin
   for lj:=Y1 to Y2 do
     for li:=X1 to X2 do
       if Buf1[lj,li]>th then
-        Buf2[lj,li] := 255
+        Buf2[lj,li] := 1
       else
         Buf2[lj,li] :=0;
   if CB_Log.Checked then
@@ -2069,18 +2073,18 @@ begin
     for li:=0 to PX-1 do
     begin
       if Buf1[lj,li]<TH_r[1] then
-        Buf2[lj,li] := TH_r[1]
+        Buf2[lj,li] := 0//TH_r[1]
       else
         if Buf1[lj,li]<TH_r[2] then
-          Buf2[lj,li] := TH_r[2]
+          Buf2[lj,li] := 1//TH_r[2]
         else
           if Buf1[lj,li]<TH_r[3] then
-            Buf2[lj,li] := TH_r[3]
+            Buf2[lj,li] := 2//TH_r[3]
           else
             if Buf1[lj,li]<TH_r[4] then
-              Buf2[lj,li] := TH_r[4]
+              Buf2[lj,li] := 3//TH_r[4]
             else
-              Buf2[lj,li] := lPMax;
+              Buf2[lj,li] := 4;//lPMax;
     end;
 end;
 
@@ -2198,6 +2202,113 @@ begin
     Memo.Lines.Add('Image filterd by kernel');
 end;
 
+procedure TForm_PW.Thinning(Sender: TObject);
+var
+  li, lj, lii, X1, X2, Y1, Y2 : longint;
+  N, S, Dif, lL: longint;
+  I : array[1..9] of byte;
+begin
+  if CB_Fil_ROI.Checked then
+  begin
+    X1 := StrToInt(Edit_ROI_Left.Text);
+    X2 := StrToInt(Edit_ROI_Right.Text);
+    Y1 := StrToInt(Edit_ROI_Top.Text);
+    Y2 := StrToInt(Edit_ROI_Bottom.Text);
+  end
+  else
+  begin
+    X1 := 0;
+    X2 := PX-1;
+    Y1 := 0;
+    Y2 := PY-1;
+  end;
+
+  lL := 0;
+  repeat
+    Inc(lL);
+    Dif :=0;
+    for lj:=Y1+1 to Y2-1 do
+      for li := X1+1 to X2-1 do
+      begin
+        if Data[lj,li]=1 then
+        begin
+          I[1] := Round(Data[lj  ,li  ]);
+          I[2] := Round(Data[lj-1,li  ]);
+          I[3] := Round(Data[lj-1,li+1]);
+          I[4] := Round(Data[lj  ,li+1]);
+          I[5] := Round(Data[lj+1,li+1]);
+          I[6] := Round(Data[lj+1,li  ]);
+          I[7] := Round(Data[lj+1,li-1]);
+          I[8] := Round(Data[lj  ,li-1]);
+          I[9] := Round(Data[lj-1,li-1]);
+
+          N := 0;
+          for lii:=2 to 9 do
+            N := N+I[lii];
+          S := 0;
+          for lii:=2 to 8 do
+            if (I[lii]=0) and (I[lii+1]=1) then
+              Inc(S);
+          if (I[9]=0) and (I[2]=1) then Inc(S);
+
+          if ((N>=2) and (N<=6)) and (S=1) then
+          begin
+            if (I[2]*I[4]*I[6]=0) and (I[4]*I[6]*I[8]=0) then
+            begin
+              Buf1[lj,li] :=0;
+              Inc(Dif);
+            end;
+          end;
+        end;
+      end;
+    for lj:=Y1+1 to Y2-1 do
+      for li := X1+1 to X2-1 do
+        Data[lj,li]:= Buf1[lj,li];
+
+    for lj:=Y1+1 to Y2-1 do
+      for li := X1+1 to X2-1 do
+      begin
+        if Data[lj,li]=1 then
+        begin
+          I[1] := Round(Data[lj  ,li  ]);
+          I[2] := Round(Data[lj-1,li  ]);
+          I[3] := Round(Data[lj-1,li+1]);
+          I[4] := Round(Data[lj  ,li+1]);
+          I[5] := Round(Data[lj+1,li+1]);
+          I[6] := Round(Data[lj+1,li  ]);
+          I[7] := Round(Data[lj+1,li-1]);
+          I[8] := Round(Data[lj  ,li-1]);
+          I[9] := Round(Data[lj-1,li-1]);
+
+          N := 0;
+          for lii:=2 to 9 do
+            N := N+I[lii];
+          S := 0;
+          for lii:=2 to 8 do
+            if (I[lii]=0) and (I[lii+1]=1) then
+              Inc(S);
+          if (I[9]=0) and (I[2]=1) then Inc(S);
+
+          if ((N>=2) and (N<=6)) and (S=1) then
+          begin
+            if (I[2]*I[4]*I[8]=0) and (I[2]*I[6]*I[8]=0) then
+            begin
+              Buf1[lj,li] :=0;
+              Inc(Dif);
+            end;
+          end;
+        end;
+      end;
+    for lj:=Y1+1 to Y2-1 do
+      for li := X1+1 to X2-1 do
+        Data[lj,li]:= Buf1[lj,li];
+  until Dif=0;
+  for lj:=Y1+1 to Y2-1 do
+    for li := X1+1 to X2-1 do
+      Buf2[lj,li]:= Buf1[lj,li];
+end;
+
+
 procedure TForm_PW.SB_FilClick(Sender: TObject);
 var
   li,lj, lk : longint;
@@ -2219,6 +2330,7 @@ begin
       2:Median(StrToInt(Edit_Fil_P1.Text),Sender);
       3,6: Kern_Fil(StrToInt(Edit_Fil_P2.Text),Sender) ;
       4,5: Kern_Fil(1,Sender);
+      7:Thinning(Sender);
     end;
 
     for lj:=0 to PY-1 do
@@ -2228,6 +2340,7 @@ begin
   end
   else
   begin
+    Go := true;
     for lk:=StrToInt(Edit_Fil_ST.Text) to StrToInt(Edit_Fil_End.Text) do
     begin
       Booting := true;
@@ -2236,10 +2349,13 @@ begin
       TB_Img_No.Position := UD_TB_Img_No.Position;
       Booting := false;
       Load_Data(UD_TB_Img_No.Position,Sender);
+      Draw_Data(Sender);
+
 
       for lj:=0 to PY-1 do
         for li :=0 to PX-1 do
         begin
+          OrigData[lj,li]:=Data[lj,li];
           Buf1[lj,li] := Data[lj,li];
           Buf2[lj,li] := Data[lj,li];
         end;
@@ -2262,8 +2378,14 @@ begin
       Save_Data(lFN+'_fil_'+lk.ToString,Sender);
       Application.ProcessMessages;
       SB.Panels[2].Text := 'Slice No : '+lk.ToString;
+      if not(Go) then exit;
     end;
   end;
+end;
+
+procedure TForm_PW.SB_STOPClick(Sender: TObject);
+begin
+  Go := false;
 end;
 
 procedure TForm_PW.SB_Fil_UndoClick(Sender: TObject);

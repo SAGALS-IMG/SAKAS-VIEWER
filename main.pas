@@ -63,6 +63,7 @@ type
     LEdit_OH: TLabeledEdit;
     LEdit_OFFX: TLabeledEdit;
     LEdit_OFFY: TLabeledEdit;
+    SB_ROI: TSpeedButton;
     StaticText2: TStaticText;
     StaticText1: TStaticText;
     Shape1: TShape;
@@ -93,6 +94,7 @@ type
     procedure SB_Img_RegClick(Sender: TObject);
     procedure SB_Img_SegClick(Sender: TObject);
     procedure LB_PWClick(Sender: TObject);
+    procedure SB_ROIClick(Sender: TObject);
   private
     { Private êÈåæ }
   public
@@ -208,8 +210,10 @@ end;
 
 procedure TForm_main.SB_FOpenClick(Sender: TObject);
 begin
+  OpenDialog1.Filter := 'All files|*.*';
   if OpenDialog1.Execute then
     Edit_FN.Text := OpenDialog1.FileName;
+  OpenDialog1.Filter := 'Tag files|*.tag|All files|*.*';
 end;
 
 procedure TForm_main.SB_HelpClick(Sender: TObject);
@@ -381,6 +385,10 @@ var
 begin
   lFN := Edit_FN.Text;
 
+  if UD_Load_ST.Position<StrToInt(Edit_ST.Text) then
+    UD_Load_ST.Position := StrToInt(Edit_ST.Text);
+  if UD_Load_ST.Position>StrToInt(Edit_End.Text) then
+    UD_Load_ST.Position := StrToInt(Edit_End.Text);
   if lFN='' then
     exit;
 
@@ -411,8 +419,12 @@ begin
   PW[TPW].Sample_Name := Label_Sample_Name.Caption;
   PW[TPW].Method_Name := Label_Method_Name.Caption;
 
+  PW[TPW].OX := StrToInt(LEdit_OW.Text);
+  PW[TPW].OY := StrToInt(LEdit_OH.Text);
   PW[TPW].PX := StrToInt(LEdit_PW.Text);
   PW[TPW].PY := StrToInt(LEdit_PH.Text);
+  PW[TPW].OFFX := StrToInt(LEdit_OFFX.Text);
+  PW[TPW].OFFY := StrToInt(LEdit_OFFY.Text);
   PW[TPW].STZ := StrToInt(Edit_ST.Text);
   PW[TPW].EndZ := StrToInt(Edit_End.Text);
 
@@ -469,6 +481,14 @@ var
 begin
   TPW := CLB_PW.ItemIndex;
   PW[TPW].Show;
+end;
+
+procedure TForm_main.SB_ROIClick(Sender: TObject);
+begin
+  LEdit_PW.Text := LEdit_OW.Text;
+  LEdit_PH.Text := LEdit_OH.Text;
+  LEdit_OFFX.Text := '0';
+  LEdit_OFFY.Text := '0';
 end;
 
 end.
