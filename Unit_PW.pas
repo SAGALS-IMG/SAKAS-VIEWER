@@ -183,16 +183,18 @@ type
     Bevel139: TBevel;
     Bevel140: TBevel;
     Bevel141: TBevel;
-    SB_Img_Del_Img: TSpeedButton;
+    Label138: TLabel;
     SB_Img_Z_Prof: TSpeedButton;
     SB_Img_Z_Add: TSpeedButton;
     SB_Img_ZFlip: TSpeedButton;
+    SB_Sep_img: TSpeedButton;
     Edit_Z_Profile_ST: TEdit;
     Edit_Z_Profile_End: TEdit;
     Edit_Z_Project_End: TEdit;
     Edit_Z_Project_ST: TEdit;
-    Edit_Del_Slice_ST: TEdit;
-    Edit_Del_Slice_End: TEdit;
+    Edit_Sep_Slice_ST: TEdit;
+    Edit_Sep_Slice_End: TEdit;
+    Edit_Sep_Slice_d: TEdit;
 
     TabSheet4: TTabSheet;
     GroupBox141: TGroupBox;
@@ -468,6 +470,7 @@ type
 
     procedure TabSheet7Show(Sender: TObject);
     procedure TabSheet7Hide(Sender: TObject);
+    procedure SB_Sep_imgClick(Sender: TObject);
   private
     { Private êÈåæ }
   public
@@ -1829,6 +1832,50 @@ begin
   if CB_Log.Checked then
     Memo.Lines.Add('Image added from '+Edit_Z_Project_ST.Text+' to '+Edit_Z_Project_End.Text);
 end;
+
+procedure TForm_PW.SB_Sep_imgClick(Sender: TObject);
+var
+  li, lj, lk, lST, lEnd, ld: longint;
+  lFS : array of TFileStream;
+  lBFN : string;
+  lData : array[0..4100] of WORD;
+begin
+  if SaveDialog1.Execute then
+  begin
+    lBFN := SaveDialog1.FileName;
+    lST := StrToInt(Edit_Sep_Slice_ST.Text);
+    lEnd := StrToInt(Edit_Sep_Slice_End.Text);
+    ld :=  StrToInt(Edit_Sep_Slice_d.Text);
+
+    SetLength(lFS,((lEnd-lST) div ld)+1);
+    for lk:=0 to ((lEnd-lST) div ld) do
+      lFS[lk] := TFileStream.Create(lBFN+'_'+lk.ToString,fmCreate);
+
+    for lk:= lST to lEnd do
+    begin
+      Booting := true;
+      UD_TB_Img_No.Position := lk;
+      UD_Show_ImgNo.Position := UD_TB_Img_No.Position;
+      TB_Img_No.Position := UD_TB_Img_No.Position;
+      Booting := false;
+      Load_Data(UD_TB_Img_No.Position,Sender);
+      Application.ProcessMessages;
+      SB.Panels[2].Text := 'Separating... '+lk.ToString;
+
+      for lj:=0 to PY-1 do
+      begin
+        for li:=0 to PX-1 do
+          lData[li] := Round(Data[lj,li]);
+        lFS[((lk-lST) div ld)].WriteBuffer(lData,PX*2);
+      end;
+    end;
+
+    for lk:=0 to ((lEnd-lST) div ld) do
+      lFS[lk].Free;
+    SB.Panels[2].Text := '';
+  end;
+end;
+
 
 
 

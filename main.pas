@@ -242,9 +242,9 @@ begin
   RG_Format.ItemIndex := IniF.ReadInteger( 'Proc_'+Proc_N.ToString, 'Format', 1);
   Label_Method_Name.Caption := IniF.ReadString('Proc_'+Proc_N.ToString, 'Method', '');
 
-  if Edit_End.Text ='' then
+  if Edit_End.Text ='0' then
     Edit_End.Text := (StrToInt(Edit_ImgN.Text)-1).ToString;
-  if Edit_ImgN.Text ='' then
+  if Edit_ImgN.Text ='0' then
     Edit_ImgN.Text := (StrToInt(Edit_End.Text)-StrToInt(Edit_ST.Text)+1).ToString;
 
   LEdit_OW.Text := IntToStr(IniF.ReadInteger( 'Proc_'+Proc_N.ToString, 'Width', 2048));

@@ -426,7 +426,7 @@ object Form_PW: TForm_PW
       Top = 161
       Width = 377
       Height = 456
-      ActivePage = TabSheet1
+      ActivePage = TabSheet3
       Align = alTop
       DoubleBuffered = False
       Font.Charset = DEFAULT_CHARSET
@@ -1672,7 +1672,7 @@ object Form_PW: TForm_PW
           Left = 0
           Top = 37
           Width = 369
-          Height = 253
+          Height = 250
           Align = alTop
           Caption = 'Transform'
           Color = 16116201
@@ -1994,55 +1994,48 @@ object Form_PW: TForm_PW
         end
         object GroupBox132: TGroupBox
           Left = 0
-          Top = 290
+          Top = 287
           Width = 369
-          Height = 137
+          Height = 140
           Align = alClient
           Caption = 'Stack images'
           Color = 16116201
           ParentBackground = False
           ParentColor = False
           TabOrder = 1
+          ExplicitTop = 290
+          ExplicitHeight = 137
           object Bevel141: TBevel
             Left = 224
-            Top = 21
+            Top = 20
             Width = 80
             Height = 25
             Style = bsRaised
           end
           object Bevel138: TBevel
             Left = 12
-            Top = 24
+            Top = 20
             Width = 80
             Height = 25
             Style = bsRaised
           end
           object Bevel139: TBevel
             Left = 12
-            Top = 55
+            Top = 51
             Width = 80
             Height = 25
             Style = bsRaised
           end
           object Bevel140: TBevel
             Left = 12
-            Top = 86
+            Top = 82
             Width = 80
             Height = 25
             Style = bsRaised
           end
-          object SB_Img_Del_Img: TSpeedButton
-            Left = 12
-            Top = 86
-            Width = 80
-            Height = 25
-            Caption = 'Delete img'
-            Enabled = False
-            Flat = True
-          end
           object SB_Img_Z_Prof: TSpeedButton
             Left = 12
-            Top = 24
+            Top = 20
             Width = 80
             Height = 25
             Caption = 'Z profile'
@@ -2052,7 +2045,7 @@ object Form_PW: TForm_PW
           end
           object SB_Img_Z_Add: TSpeedButton
             Left = 12
-            Top = 55
+            Top = 51
             Width = 80
             Height = 25
             Caption = 'Z addition'
@@ -2067,16 +2060,38 @@ object Form_PW: TForm_PW
           end
           object SB_Img_ZFlip: TSpeedButton
             Left = 224
-            Top = 21
+            Top = 20
             Width = 80
             Height = 25
             Caption = 'Z flip'
             Enabled = False
             Flat = True
           end
+          object Label138: TLabel
+            Left = 158
+            Top = 117
+            Width = 57
+            Height = 14
+            Caption = '[img/file]'
+          end
+          object SB_Sep_img: TSpeedButton
+            Left = 12
+            Top = 82
+            Width = 80
+            Height = 25
+            Caption = 'Separate'
+            Flat = True
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clNavy
+            Font.Height = -12
+            Font.Name = 'Tahoma'
+            Font.Style = [fsBold]
+            ParentFont = False
+            OnClick = SB_Sep_imgClick
+          end
           object Edit_Z_Profile_ST: TEdit
             Left = 104
-            Top = 25
+            Top = 21
             Width = 48
             Height = 22
             Enabled = False
@@ -2085,7 +2100,7 @@ object Form_PW: TForm_PW
           end
           object Edit_Z_Profile_End: TEdit
             Left = 158
-            Top = 25
+            Top = 21
             Width = 48
             Height = 22
             Enabled = False
@@ -2094,7 +2109,7 @@ object Form_PW: TForm_PW
           end
           object Edit_Z_Project_End: TEdit
             Left = 158
-            Top = 57
+            Top = 53
             Width = 48
             Height = 22
             TabOrder = 5
@@ -2102,27 +2117,35 @@ object Form_PW: TForm_PW
           end
           object Edit_Z_Project_ST: TEdit
             Left = 104
-            Top = 57
+            Top = 53
             Width = 48
             Height = 22
             TabOrder = 4
             Text = '0'
           end
-          object Edit_Del_Slice_ST: TEdit
+          object Edit_Sep_Slice_ST: TEdit
             Left = 104
-            Top = 88
+            Top = 84
             Width = 48
             Height = 22
-            Enabled = False
             TabOrder = 2
+            Text = '0'
           end
-          object Edit_Del_Slice_End: TEdit
+          object Edit_Sep_Slice_End: TEdit
             Left = 158
-            Top = 88
+            Top = 84
             Width = 48
             Height = 22
-            Enabled = False
             TabOrder = 3
+            Text = '100'
+          end
+          object Edit_Sep_Slice_d: TEdit
+            Left = 104
+            Top = 112
+            Width = 48
+            Height = 22
+            TabOrder = 6
+            Text = '10'
           end
         end
         object Panel131: TPanel
