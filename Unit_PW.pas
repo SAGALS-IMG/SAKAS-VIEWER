@@ -184,6 +184,9 @@ type
     Bevel140: TBevel;
     Bevel141: TBevel;
     Label138: TLabel;
+    Label139: TLabel;
+    Label140_1: TLabel;
+    Label140_2: TLabel;
     SB_Img_Z_Prof: TSpeedButton;
     SB_Img_Z_Add: TSpeedButton;
     SB_Img_ZFlip: TSpeedButton;
@@ -326,6 +329,9 @@ type
     CB_NewF: TCheckBox;
     CB_DCM_Bin: TCheckBox;
     CB_DCM_SubstBK: TCheckBox;
+    CB_DCM_ROI: TCheckBox;
+    CB_DCM_Auto: TCheckBox;
+    CB_UID: TCheckBox;
 
     GroupBox172: TGroupBox;
     Panel172: TPanel;
@@ -367,8 +373,6 @@ type
     SB_DCM_Import: TSpeedButton;
     SB_DCM_Export: TSpeedButton;
     SB_DCM_STOP: TSpeedButton;
-    CB_DCM_ROI: TCheckBox;
-    CB_UID: TCheckBox;
 
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
@@ -1863,7 +1867,9 @@ begin
       TB_Img_No.Position := UD_TB_Img_No.Position;
       Booting := false;
       Load_Data(UD_TB_Img_No.Position,Sender);
+
       Application.ProcessMessages;
+      SB_RedrawClick(Sender);
       SB.Panels[2].Text := 'Separating... '+lk.ToString;
 
       for lj:=0 to PY-1 do
@@ -3029,7 +3035,7 @@ var
   li,lj,lii,ljj,lk,lkk,X1,X2,Y1,Y2, lPX, lPY, lBIN, lST, lEnd:longint;
   BK_X1, BK_X2, BK_Y1, BK_Y2 : longint;
   DCM_DIR, lFN : string;
-  TmpDbl,a,b : double;
+  TmpDbl,a,b, lPMin, lPMax : double;
   lMag:longint;
 begin
   lMag := 10;
@@ -3127,6 +3133,15 @@ begin
       end;
 
       SB_RedrawClick(Sender);
+      if CB_DCM_Auto.Checked then
+      begin
+        lPMax := StrToFloat(Edit_PMax.Text);
+        lPMin := StrToFloat(Edit_PMin.Text);
+        if lPMin<>lPMax then
+          a := 1000/(lPMax-lPMin)
+        else
+          a :=1;
+      end;
 
       TmpDbl := 0;
       if CB_DCM_SubstBK.Checked then

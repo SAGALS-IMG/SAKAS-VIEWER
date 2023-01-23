@@ -426,7 +426,7 @@ object Form_PW: TForm_PW
       Top = 161
       Width = 377
       Height = 456
-      ActivePage = TabSheet4
+      ActivePage = TabSheet1
       Align = alTop
       DoubleBuffered = False
       Font.Charset = DEFAULT_CHARSET
@@ -1708,11 +1708,11 @@ object Form_PW: TForm_PW
             Caption = 'dX, dY [pixel]'
           end
           object Label124: TLabel
-            Left = 111
-            Top = 171
-            Width = 223
+            Left = 95
+            Top = 168
+            Width = 267
             Height = 14
-            Caption = 'Shift (X, Y) = dXY+OffZ_XY*Img_No'
+            Caption = '*Shift(X, Y) = (dX, dY)+(Z_X, Z_Y)*Img_No'
           end
           object Bevel131: TBevel
             Left = 12
@@ -1970,7 +1970,7 @@ object Form_PW: TForm_PW
             Top = 141
             Width = 84
             Height = 17
-            Caption = 'OffZ_X, Y'
+            Caption = 'Z_X, Y*'
             Checked = True
             State = cbChecked
             TabOrder = 7
@@ -2003,6 +2003,7 @@ object Form_PW: TForm_PW
           ParentBackground = False
           ParentColor = False
           TabOrder = 1
+          ExplicitTop = 286
           object Bevel141: TBevel
             Left = 224
             Top = 20
@@ -2087,6 +2088,27 @@ object Form_PW: TForm_PW
             ParentFont = False
             OnClick = SB_Sep_imgClick
           end
+          object Label139: TLabel
+            Left = 155
+            Top = 24
+            Width = 10
+            Height = 14
+            Caption = '~'
+          end
+          object Label140_1: TLabel
+            Left = 155
+            Top = 56
+            Width = 10
+            Height = 14
+            Caption = '~'
+          end
+          object Label140_2: TLabel
+            Left = 155
+            Top = 87
+            Width = 10
+            Height = 14
+            Caption = '~'
+          end
           object Edit_Z_Profile_ST: TEdit
             Left = 104
             Top = 21
@@ -2097,7 +2119,7 @@ object Form_PW: TForm_PW
             Text = '0'
           end
           object Edit_Z_Profile_End: TEdit
-            Left = 158
+            Left = 167
             Top = 21
             Width = 48
             Height = 22
@@ -2106,11 +2128,11 @@ object Form_PW: TForm_PW
             Text = '0'
           end
           object Edit_Z_Project_End: TEdit
-            Left = 158
+            Left = 167
             Top = 53
             Width = 48
             Height = 22
-            TabOrder = 5
+            TabOrder = 3
             Text = '0'
           end
           object Edit_Z_Project_ST: TEdit
@@ -2118,7 +2140,7 @@ object Form_PW: TForm_PW
             Top = 53
             Width = 48
             Height = 22
-            TabOrder = 4
+            TabOrder = 2
             Text = '0'
           end
           object Edit_Sep_Slice_ST: TEdit
@@ -2126,15 +2148,15 @@ object Form_PW: TForm_PW
             Top = 84
             Width = 48
             Height = 22
-            TabOrder = 2
+            TabOrder = 4
             Text = '0'
           end
           object Edit_Sep_Slice_End: TEdit
-            Left = 158
+            Left = 167
             Top = 84
             Width = 48
             Height = 22
-            TabOrder = 3
+            TabOrder = 5
             Text = '100'
           end
           object Edit_Sep_Slice_d: TEdit
@@ -2234,8 +2256,6 @@ object Form_PW: TForm_PW
             Align = alTop
             BevelOuter = bvNone
             TabOrder = 0
-            ExplicitLeft = 3
-            ExplicitTop = 10
             object Bevel150: TBevel
               Left = 178
               Top = 3
@@ -3605,20 +3625,23 @@ object Form_PW: TForm_PW
         OnShow = TabSheet7Show
         object GroupBox171: TGroupBox
           Left = 0
-          Top = 145
+          Top = 161
           Width = 369
-          Height = 282
+          Height = 266
           Align = alClient
           Caption = 'DICOM Header'
           Color = 14803396
           ParentBackground = False
           ParentColor = False
           TabOrder = 0
+          ExplicitLeft = 3
+          ExplicitTop = 156
+          ExplicitHeight = 269
           object Panel172: TPanel
             Left = 2
             Top = 16
             Width = 365
-            Height = 66
+            Height = 63
             Align = alTop
             BevelOuter = bvNone
             TabOrder = 0
@@ -3769,162 +3792,164 @@ object Form_PW: TForm_PW
           end
           object GroupBox172: TGroupBox
             Left = 2
-            Top = 82
+            Top = 79
             Width = 365
-            Height = 198
+            Height = 185
             Align = alClient
             Caption = 'Main info.'
             TabOrder = 1
+            ExplicitTop = 81
+            ExplicitHeight = 198
             object Label172: TLabel
               Left = 11
-              Top = 27
+              Top = 20
               Width = 85
               Height = 14
               Caption = 'Sample Name '
             end
             object Label174: TLabel
               Left = 11
-              Top = 55
+              Top = 49
               Width = 69
               Height = 14
               Caption = 'Study date'
             end
             object Label175: TLabel
               Left = 208
-              Top = 55
+              Top = 49
               Width = 28
               Height = 14
               Caption = 'Time'
             end
             object Label176: TLabel
               Left = 11
-              Top = 83
+              Top = 77
               Width = 78
               Height = 14
               Caption = 'X-ray energy'
             end
             object Label178: TLabel
               Left = 11
-              Top = 111
+              Top = 105
               Width = 57
               Height = 14
               Caption = 'Exp. time'
             end
             object Label180: TLabel
               Left = 10
-              Top = 139
+              Top = 133
               Width = 59
               Height = 14
               Caption = 'Boxel size'
             end
             object Label177: TLabel
               Left = 207
-              Top = 83
+              Top = 77
               Width = 32
               Height = 14
               Caption = '[keV]'
             end
             object Label179: TLabel
               Left = 207
-              Top = 111
+              Top = 105
               Width = 27
               Height = 14
               Caption = '[ms]'
             end
             object Label181: TLabel
               Left = 309
-              Top = 139
+              Top = 133
               Width = 32
               Height = 14
               Caption = '[mm]'
             end
             object Label182: TLabel
               Left = 10
-              Top = 167
+              Top = 161
               Width = 64
               Height = 14
               Caption = 'Image Pos'
             end
             object Label183: TLabel
               Left = 309
-              Top = 167
+              Top = 161
               Width = 32
               Height = 14
               Caption = '[mm]'
             end
             object Edit_DCM_Name: TEdit
               Left = 108
-              Top = 23
+              Top = 17
               Width = 233
               Height = 22
               TabOrder = 0
             end
             object Edit_DCM_Date: TEdit
               Left = 108
-              Top = 51
+              Top = 45
               Width = 93
               Height = 22
               TabOrder = 1
             end
             object Edit_DCM_Time: TEdit
               Left = 256
-              Top = 51
+              Top = 45
               Width = 85
               Height = 22
               TabOrder = 2
             end
             object Edit_DCM_Energy: TEdit
               Left = 108
-              Top = 79
+              Top = 73
               Width = 93
               Height = 22
               TabOrder = 3
             end
             object Edit_DCM_ExpT: TEdit
               Left = 108
-              Top = 107
+              Top = 101
               Width = 93
               Height = 22
               TabOrder = 4
             end
             object Edit_DCM_PX: TEdit
               Left = 108
-              Top = 135
+              Top = 129
               Width = 61
               Height = 22
               TabOrder = 5
             end
             object Edit_DCM_PY: TEdit
               Left = 175
-              Top = 135
+              Top = 129
               Width = 61
               Height = 22
               TabOrder = 6
             end
             object Edit_DCM_PZ: TEdit
               Left = 242
-              Top = 135
+              Top = 129
               Width = 61
               Height = 22
               TabOrder = 7
             end
             object Edit_DCM_X: TEdit
               Left = 108
-              Top = 163
+              Top = 157
               Width = 61
               Height = 22
               TabOrder = 8
             end
             object Edit_DCM_Y: TEdit
               Left = 175
-              Top = 163
+              Top = 157
               Width = 61
               Height = 22
               TabOrder = 9
             end
             object Edit_DCM_Z: TEdit
               Left = 242
-              Top = 163
+              Top = 157
               Width = 61
               Height = 22
               TabOrder = 10
@@ -3935,7 +3960,7 @@ object Form_PW: TForm_PW
           Left = 0
           Top = 0
           Width = 369
-          Height = 145
+          Height = 161
           Align = alTop
           BevelOuter = bvNone
           Color = 14803396
@@ -4031,21 +4056,21 @@ object Form_PW: TForm_PW
           end
           object Label201: TLabel
             Left = 15
-            Top = 121
+            Top = 135
             Width = 35
             Height = 14
             Caption = 'HU = '
           end
           object Label202: TLabel
             Left = 129
-            Top = 121
+            Top = 135
             Width = 222
             Height = 14
             Caption = '* Orig_V - (                    +              )'
           end
           object Label204: TLabel
-            Left = 163
-            Top = 96
+            Left = 35
+            Top = 111
             Width = 173
             Height = 14
             Caption = 'Subst ROI_BK (Fuchsia-Box)'
@@ -4059,7 +4084,7 @@ object Form_PW: TForm_PW
           end
           object Label203: TLabel
             Left = 294
-            Top = 121
+            Top = 135
             Width = 47
             Height = 14
             Caption = 'ROI_BK'
@@ -4087,16 +4112,16 @@ object Form_PW: TForm_PW
             Text = '0'
           end
           object CB_DCM_Bin: TCheckBox
-            Left = 248
-            Top = 72
+            Left = 265
+            Top = 69
             Width = 73
             Height = 17
             Caption = 'Binning'
-            TabOrder = 4
+            TabOrder = 3
           end
           object CB_DCM_SubstBK: TCheckBox
-            Left = 146
-            Top = 95
+            Left = 17
+            Top = 109
             Width = 25
             Height = 17
             Font.Charset = DEFAULT_CHARSET
@@ -4105,46 +4130,46 @@ object Form_PW: TForm_PW
             Font.Name = 'Tahoma'
             Font.Style = [fsBold]
             ParentFont = False
-            TabOrder = 6
+            TabOrder = 7
           end
           object CB_DCM_Mask: TCheckBox
             Left = 146
-            Top = 72
-            Width = 73
+            Top = 69
+            Width = 62
             Height = 17
             Caption = 'Mask'
-            TabOrder = 3
+            TabOrder = 4
           end
           object CB_NewF: TCheckBox
-            Left = 15
-            Top = 95
+            Left = 146
+            Top = 89
             Width = 113
             Height = 17
             Caption = 'New filename'
-            TabOrder = 5
+            TabOrder = 6
           end
           object CB_DCM_ROI: TCheckBox
-            Left = 15
-            Top = 72
-            Width = 98
+            Left = 17
+            Top = 69
+            Width = 88
             Height = 17
             Caption = 'ROI Only'
             TabOrder = 2
           end
           object Edit_DCM_a: TEdit
             Left = 56
-            Top = 118
+            Top = 132
             Width = 70
             Height = 22
-            TabOrder = 7
+            TabOrder = 8
             Text = '1'
           end
           object Edit_DCM_b: TEdit
             Left = 204
-            Top = 118
+            Top = 132
             Width = 70
             Height = 22
-            TabOrder = 8
+            TabOrder = 9
             Text = '0'
           end
           object CB_UID: TCheckBox
@@ -4153,7 +4178,15 @@ object Form_PW: TForm_PW
             Width = 43
             Height = 17
             Caption = 'UID'
-            TabOrder = 9
+            TabOrder = 10
+          end
+          object CB_DCM_Auto: TCheckBox
+            Left = 17
+            Top = 89
+            Width = 91
+            Height = 17
+            Caption = 'Auto Const'
+            TabOrder = 5
           end
         end
       end
