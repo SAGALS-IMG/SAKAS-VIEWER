@@ -45,13 +45,13 @@ object AboutBox: TAboutBox
     OnClick = SpeedButton1Click
   end
   object Label1: TLabel
-    Left = 9
+    Left = 12
     Top = 212
     Width = 144
     Height = 22
     Alignment = taCenter
     AutoSize = False
-    Caption = 'Ver. 2023/1/23'
+    Caption = 'Ver. 2023/1/30'
     Font.Charset = ARABIC_CHARSET
     Font.Color = clWindowText
     Font.Height = -16

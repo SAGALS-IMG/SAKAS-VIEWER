@@ -177,6 +177,7 @@ type
     Edit_Shift_OffY: TEdit;
     CB_Shift_Off: TCheckBox;
     CB_BIN: TComboBox;
+    CB_Extend: TCheckBox;
 
     GroupBox132: TGroupBox;
     Bevel138: TBevel;
@@ -433,10 +434,10 @@ type
     procedure Do_Rot_Img(Sender: TObject);
     procedure Do_VerF_Img(Sender: TObject);
     procedure Do_HolF_Img(Sender: TObject);
-    procedure Do_Shift_Img(ShX,ShY:longint;Sender: TObject);
     procedure Do_Crop_Img(Sender: TObject);
     procedure Do_Bin_Img(Sender: TObject);
     procedure Image_Tr(Sender: TObject);
+    procedure SB_Img_ShiftClick(Sender: TObject);
     procedure SB_Img_UndoClick(Sender: TObject);
     procedure SB_Img_Z_AddClick(Sender: TObject);
     procedure SB_Img_Z_ProfClick(Sender: TObject);
@@ -510,6 +511,30 @@ implementation
 
 {$R *.dfm}
 
+procedure QuickSort(var A: array of single; iLo, iHi: Integer);
+var
+  Lo, Hi: Integer;
+  Mid, T:single;
+begin
+  Lo := iLo;
+  Hi := iHi;
+  Mid := A[(Lo + Hi) div 2];
+  repeat
+    while A[Lo] < Mid do Inc(Lo);
+    while A[Hi] > Mid do Dec(Hi);
+    if Lo <= Hi then
+    begin
+      T := A[Lo];
+      A[Lo] := A[Hi];
+      A[Hi] := T;
+      Inc(Lo);
+      Dec(Hi);
+    end;
+  until Lo > Hi;
+  if Hi > iLo then QuickSort(A, iLo, Hi);
+  if Lo < iHi then QuickSort(A, Lo, iHi);
+end;
+
 procedure TForm_PW.FormCreate(Sender: TObject);
 var
   Ini: TIniFile;
@@ -542,6 +567,13 @@ begin
     RB_PMinMax_M.Checked := Ini.ReadBool('Form_PW', 'Min_Max_M', true );
     RB_PMinMax_A1.Checked := Ini.ReadBool('Form_PW', 'Min_Max_A1', false );
     RB_PMinMax_A2.Checked := Ini.ReadBool('Form_PW', 'Min_Max_A2', false );
+
+    Edit_Shift_dX.Text := Ini.ReadString('Form_PW', 'Tr_dX', '0');
+    Edit_Shift_dY.Text := Ini.ReadString('Form_PW', 'Tr_dY', '0');
+    Edit_Shift_OffX.Text := Ini.ReadString('Form_PW', 'Tr_dX_Z', '0');
+    Edit_Shift_OffY.Text := Ini.ReadString('Form_PW', 'Tr_dY_Z', '0');
+
+    Edit_Math_P.Text :=  Ini.ReadString('Form_PW', 'Math_P', '0');
   finally
     Ini.Free;
   end;
@@ -600,6 +632,13 @@ begin
     Ini.WriteBool('Form_PW', 'Min_Max_M', RB_PMinMax_M.Checked );
     Ini.WriteBool('Form_PW', 'Min_Max_A1', RB_PMinMax_A1.Checked );
     Ini.WriteBool('Form_PW', 'Min_Max_A2', RB_PMinMax_A2.Checked );
+
+    Ini.WriteString('Form_PW', 'Tr_dX', Edit_Shift_dX.Text);
+    Ini.WriteString('Form_PW', 'Tr_dY', Edit_Shift_dY.Text);
+    Ini.WriteString('Form_PW', 'Tr_dX_Z', Edit_Shift_OffX.Text);
+    Ini.WriteString('Form_PW', 'Tr_dY_Z', Edit_Shift_OffY.Text);
+
+    Ini.WriteString('Form_PW', 'Math_P', Edit_Math_P.Text);
   finally
     Ini.Free;
   end;
@@ -814,11 +853,13 @@ end;
 
 procedure TForm_PW.Find_Min_Max(ROI: boolean; Sender: TObject);
 var
-  li,lj, X1, X2, Y1, Y2 : longint;
-  lPmin, lPmax :double;
+  li,lj,lii, ljj, X1, X2, Y1, Y2, P1, OffFrame : longint;
+  lPmin, lPmax, TmpDbl :double;
+  SortData : array of single;
 begin
   lPMin := 1e10;
   lPMax := -1e10;
+  OffFrame := 6;
 
   if ROI then
   begin
@@ -835,22 +876,59 @@ begin
     Y2 := PY-5;
   end;
 
-  for lj:= Y1 to Y2 do
-    for li:=X1 to X2 do
+  X1 := X1 div 3;
+  X2 := X2 div 3;
+  Y1 := Y1 div 3;
+  Y2 := Y2 div 3;
+
+  //n=3x3 Average
+  for lj:=Y1+OffFrame to Y2-OffFrame do
+    for li:=X1+OffFrame to X2-OffFrame do
     begin
-      if lPMin>Data[lj,li] then
-        lPmin := Data[lj,li];
-      if lPMax<Data[lj,li] then
-        lPmax := Data[lj,li];
+      TmpDbl :=0;
+      for ljj:=-1 to 1 do
+        for lii:=-1 to 1 do
+          TmpDbl := TmpDbl+Data[lj*3+ljj,li*3+lii];
+      Buf1[lj,li] := TmpDbl/9;
+    end;
+
+  X1 := X1 div 3;
+  X2 := X2 div 3;
+  Y1 := Y1 div 3;
+  Y2 := Y2 div 3;
+  P1 := 1;
+
+  //n=3x3 Median filter
+  SetLength(SortData,SQR(P1*2+1));
+  for lj:=Y1+OffFrame to Y2-OffFrame do
+  begin
+    for li:=X1+OffFrame to X2-OffFrame do
+    begin
+      for lii:=0 to P1*2+1 do
+        SortData[lii] := 1e10;
+      for ljj:=-P1 to P1 do
+        for lii:=-P1 to P1 do
+          SortData[(ljj+P1)*(P1*2+1)+(lii+P1)] := Buf1[ljj+lj*3,lii+li*3];
+      QuickSort(SortData, Low(SortData), High(SortData));
+      Buf2[lj,li] := SortData[Sqr(P1) div 2];
+    end;
+  end;
+  Finalize(SortData);
+
+  for lj:=Y1+OffFrame to Y2-OffFrame do
+    for li:=X1+OffFrame to X2-OffFrame do
+    begin
+      if lPMin>Buf2[lj,li] then
+        lPmin := Buf2[lj,li];
+      if lPMax<Buf2[lj,li] then
+        lPmax := Buf2[lj,li];
     end;
 
   if lPMin=lPMax then
-    lPMin := lPMax-1;
+    lPMin := lPMax-0.1;
 
-  Booting := true;
   Edit_PMin.Text := Format('%9f',[lPmin]);
   Edit_PMax.Text := Format('%9f',[lPmax]);
-  Booting := false;
 end;
 
 procedure TForm_PW.Disp_Info(Sender: TObject);
@@ -1653,24 +1731,6 @@ begin
     Memo.Lines.Add('Image holizontal flipped');
 end;
 
-procedure TForm_PW.Do_Shift_Img(ShX,ShY : longint;Sender: TObject);
-var
-  li,lj, TmpX, TmpY : longint;
-begin
-  for lj:=0 to PY-1 do
-    for li :=0 to PX-1 do
-    begin
-      TmpY := lj-ShY;
-      TmpX := li-ShX;
-      if (TmpY>=0) and (TmpX>=0) and (TmpY<PY) and (TmpX<PX) then
-        Buf2[lj,li] := Buf1[TmpY, TmpX]
-      else
-        Buf2[lj,li] :=0;
-    end;
-  if CB_Log.Checked then
-    Memo.Lines.Add('Image shifted by '+ShX.ToString+' & '+ShY.ToString);
-end;
-
 procedure TForm_PW.Do_Crop_Img(Sender: TObject);
 var
   li,lj : longint;
@@ -1723,8 +1783,8 @@ end;
 
 procedure TForm_PW.Image_Tr(Sender: TObject);
 var
-  li,lj, lk, lX, lY : longint;
-  lFN : string;
+  li,lj, lk{, lX, lY, dk} : longint;
+  lFN, lDir : string;
 begin
   OX := PX;
   OY := PY;
@@ -1741,7 +1801,6 @@ begin
       101 : Do_Rot_Img(Sender);
       102 : Do_VerF_Img(Sender);
       103 : Do_HolF_Img(Sender);
-      104 : Do_Shift_Img(StrToInt(Edit_Shift_dX.Text),StrToInt(Edit_Shift_dY.Text),Sender);
       105 : Do_Crop_Img(Sender);
       106 : Do_Bin_Img(Sender);
     end;
@@ -1753,10 +1812,20 @@ begin
   end
   else
   begin
+    lDir := {TDirectory.GetParent}(ExtractFilePath(ChangeFileExt(FN,'')));
+    if lDir<>'' then
+      lDir := TDirectory.GetParent(ExtractFilePath(lDir))+'\tr'
+    else
+      lDir := ExtractFileDrive(FN)+'\tr';
+    if not(TDirectory.Exists(lDir)) then
+      MkDir(lDir);
+    lDir := lDir+'\';
+
     for lk:=StrToInt(Edit_Tr_ST.Text) to StrToInt(Edit_Tr_End.Text) do
     begin
       PX := OX;
       PY := OY;
+
       Booting := true;
       UD_TB_Img_No.Position := lk;
       UD_Show_ImgNo.Position := UD_TB_Img_No.Position;
@@ -1772,11 +1841,6 @@ begin
         101 : Do_Rot_Img(Sender);
         102 : Do_VerF_Img(Sender);
         103 : Do_HolF_Img(Sender);
-        104 : begin
-                lX := StrToInt(Edit_Shift_dX.Text)+Round((lk-StrToInt(Edit_Tr_ST.Text))*StrToFloat(Edit_Shift_OffX.Text));
-                lY := StrToInt(Edit_Shift_dY.Text)+Round((lk-StrToInt(Edit_Tr_ST.Text))*StrToFloat(Edit_Shift_OffY.Text));
-                Do_Shift_Img(lX,lY,Sender);
-              end;
         105 : Do_Crop_Img(Sender);
         106 : Do_Bin_Img(Sender);
       end;
@@ -1788,10 +1852,133 @@ begin
       Draw_Data(Sender);
 
       lFN := ReplaceStr(FN,'_*','');
-      Save_Data(lFN+'_tr_'+lk.ToString,Sender);
+      lFN := ExtractFileName(lFN);
+      Save_Data(lDir+lFN+'_tr_'+lk.ToString,Sender);
       Application.ProcessMessages;
       SB.Panels[2].Text := 'Slice No : '+lk.ToString;
     end;
+  end;
+end;
+
+
+procedure TForm_PW.SB_Img_ShiftClick(Sender: TObject);
+var
+  li,lj, lk, dk, TmpX, TmpY, ShX, ShY, ExPX, ExPY : longint;
+  lFN, lDir : string;
+  FS : TFileStream;
+  lData : array[0..4100] of WORD;
+begin
+  OX := PX;
+  OY := PY;
+
+  if CB_Tr_Target.ItemIndex = 0 then
+  begin
+    for lj:=0 to OY-1 do
+      for li :=0 to OX-1 do
+        Buf1[lj,li] := Data[lj,li];
+
+    ShX := StrToInt(Edit_Shift_dX.Text);
+    ShY := StrToInt(Edit_Shift_dY.Text);
+    for lj:=0 to OY-1 do
+      for li :=0 to OX-1 do
+      begin
+        TmpY := lj+ShY;
+        TmpX := li+ShX;
+        if (TmpY>=0) and (TmpX>=0) and (TmpY<PY) and (TmpX<PX) then
+          Buf2[TmpY,TmpX] := Buf1[lj,li]
+        else
+          Buf2[lj,li] :=0;
+      end;
+
+    if CB_Log.Checked then
+      Memo.Lines.Add('Image shifted by '+ShX.ToString+' & '+ShY.ToString);
+    for lj:=0 to OY-1 do
+      for li :=0 to OX-1 do
+        Data[lj,li]:= Buf2[lj,li];
+    Draw_Data(Sender);
+  end
+  else
+  begin
+    if CB_Extend.Checked then
+    begin
+      dk := StrToInt(Edit_Tr_End.Text) -StrToInt(Edit_Tr_ST.Text);
+      ExPX := Round(OX+dk*StrToFloat(Edit_Shift_OffX.Text));
+      ExPY := Round(OY+dk*StrToFloat(Edit_Shift_OffY.Text));
+
+      Finalize(Buf2);
+      SetLength(Buf2, ExPY+1);
+      for lj:=0 to ExPY do
+        SetLength(Buf2[lj], ExPX);
+      Memo.Lines.Add('Extended image size : '+ExPX.ToString+' * '+ExPY.ToString);
+    end;
+
+    lDir := {TDirectory.GetParent}(ExtractFilePath(ChangeFileExt(FN,'')));
+    if lDir<>'' then
+      lDir := TDirectory.GetParent(ExtractFilePath(lDir))+'\shft'
+    else
+      lDir := ExtractFileDrive(FN)+'\shft';
+    if not(TDirectory.Exists(lDir)) then
+      MkDir(lDir);
+    lDir := lDir+'\';
+
+    for lk:=StrToInt(Edit_Tr_ST.Text) to StrToInt(Edit_Tr_End.Text) do
+    begin
+      Booting := true;
+      UD_TB_Img_No.Position := lk;
+      UD_Show_ImgNo.Position := UD_TB_Img_No.Position;
+      TB_Img_No.Position := UD_TB_Img_No.Position;
+      Booting := false;
+      Load_Data(UD_TB_Img_No.Position,Sender);
+      Draw_Data(Sender);
+
+      ShX := StrToInt(Edit_Shift_dX.Text)+Round((lk-StrToInt(Edit_Tr_ST.Text))*StrToFloat(Edit_Shift_OffX.Text));
+      ShY := StrToInt(Edit_Shift_dY.Text)+Round((lk-StrToInt(Edit_Tr_ST.Text))*StrToFloat(Edit_Shift_OffY.Text));
+
+      for lj:=0 to OY-1 do
+        for li :=0 to OX-1 do
+          Buf1[lj,li] := Data[lj,li];
+
+      for lj:=0 to PY-1 do
+        for li :=0 to PX-1 do
+          Buf2[lj,li] := 0;
+
+      for lj:=0 to OY-1 do
+        for li :=0 to OX-1 do
+        begin
+          TmpY := lj+ShY;
+          TmpX := li+ShX;
+          if (TmpY>=0) and (TmpX>=0) and (TmpY<ExPY) and (TmpX<ExPX) then
+            Buf2[TmpY,TmpX] := Round(Buf1[lj,li])
+          else
+            Buf2[lj,li] :=0;
+        end;
+
+      if CB_Log.Checked then
+        Memo.Lines.Add('Image shifted by '+ShX.ToString+' & '+ShY.ToString);
+
+      lFN := ReplaceStr(FN,'_*','');
+      lFN := ExtractFileName(lFN);
+      Save_Data(lDir+lFN+'_shft_'+lk.ToString,Sender);
+      try
+        FS := TfileStream.Create(lFN,fmCreate);
+        for lj:=0 to ExPY-1 do
+        begin
+          for li:=0 to ExPX-1 do
+            lData[li] := Round(Buf2[lj,li]) ;
+          FS.WriteBuffer(lData,ExPX*2);
+        end;
+        finally
+        FS.Free;
+      end;
+
+      Application.ProcessMessages;
+      SB.Panels[2].Text := 'Slice No : '+lk.ToString;
+    end;
+
+    Finalize(Buf2);
+    SetLength(Buf2, OY+1);
+    for lj:=0 to OY do
+      SetLength(Buf2[lj], OX+1);
   end;
 end;
 
@@ -2094,30 +2281,6 @@ begin
     end;
 end;
 
-procedure QuickSort(var A: array of single; iLo, iHi: Integer);
-var
-  Lo, Hi: Integer;
-  Mid, T:single;
-begin
-  Lo := iLo;
-  Hi := iHi;
-  Mid := A[(Lo + Hi) div 2];
-  repeat
-    while A[Lo] < Mid do Inc(Lo);
-    while A[Hi] > Mid do Dec(Hi);
-    if Lo <= Hi then
-    begin
-      T := A[Lo];
-      A[Lo] := A[Hi];
-      A[Hi] := T;
-      Inc(Lo);
-      Dec(Hi);
-    end;
-  until Lo > Hi;
-  if Hi > iLo then QuickSort(A, iLo, Hi);
-  if Lo < iHi then QuickSort(A, Lo, iHi);
-end;
-
 procedure TForm_PW.Median(P1: Integer; Sender: TObject);
 var
   li, lj, lii, ljj, X1, X2, Y1, Y2 : longint;
@@ -2318,7 +2481,7 @@ end;
 procedure TForm_PW.SB_FilClick(Sender: TObject);
 var
   li,lj, lk : longint;
-  lFN : string;
+  lFN, lDir : string;
 begin
   if CB_Fil_Target.ItemIndex = 0 then
   begin
@@ -2347,6 +2510,16 @@ begin
   else
   begin
     Go := true;
+
+    lDir := {TDirectory.GetParent}(ExtractFilePath(ChangeFileExt(FN,'')));
+    if lDir<>'' then
+      lDir := TDirectory.GetParent(ExtractFilePath(lDir))+'\fil'
+    else
+      lDir := ExtractFileDrive(FN)+'\fil';
+    if not(TDirectory.Exists(lDir)) then
+      MkDir(lDir);
+    lDir := lDir+'\';
+
     for lk:=StrToInt(Edit_Fil_ST.Text) to StrToInt(Edit_Fil_End.Text) do
     begin
       Booting := true;
@@ -2381,7 +2554,8 @@ begin
       Draw_Data(Sender);
 
       lFN := ReplaceStr(FN,'_*','');
-      Save_Data(lFN+'_fil_'+lk.ToString,Sender);
+      lFN := ExtractFileName(lFN);
+      Save_Data(lDir+lFN+'_fil_'+lk.ToString,Sender);
       Application.ProcessMessages;
       SB.Panels[2].Text := 'Slice No : '+lk.ToString;
       if not(Go) then exit;
@@ -2476,7 +2650,7 @@ end;
 procedure TForm_PW.Do_Math_Cal(Sender: TObject);
 var
   li,lj,X1,X2,Y1,Y2:longint;
-  lC : double;
+  lC, TmpDbl : double;
 begin
   if CB_Math_ROI.Checked then
   begin
@@ -2535,6 +2709,17 @@ begin
               for li:=X1 to X2-1 do
                 Buf2[lj,li] := Exp(Buf1[lj,li]);
         end;
+      7:begin{norm}
+          TmpDbl := 0;
+          for lj:=Y1 to Y2 do
+            for li:=X1 to X2 do
+              TmpDbl := TmpDbl + (Buf1[lj,li]-lC);
+          TmpDbl := TmpDbl / ((Y2-Y1+1)*(X2-X1+1));
+          for lj:=Y1 to Y2 do
+            for li:=X1 to X2 do
+              Buf2[lj,li] := (Buf1[lj,li]-lC)/TmpDbl;
+        end;
+
     end;
   finally
 
@@ -2587,7 +2772,7 @@ end;
 procedure TForm_PW.SB_Fil_MathClick(Sender: TObject);
 var
   li,lj, lk : longint;
-  TmpStr, lFN : string;
+  TmpStr, lFN, lDir : string;
 begin
   if CB_Fil_Target.ItemIndex = 0 then
   begin
@@ -2609,6 +2794,15 @@ begin
   end
   else
   begin
+    lDir := {TDirectory.GetParent}(ExtractFilePath(ChangeFileExt(FN,'')));
+    if lDir<>'' then
+      lDir := TDirectory.GetParent(ExtractFilePath(lDir))+'\math'
+    else
+      lDir := ExtractFileDrive(FN)+'\math';
+    if not(TDirectory.Exists(lDir)) then
+      MkDir(lDir);
+    lDir := lDir+'\';
+
     case (Sender as TSpeedButton).Tag of
       200:TmpStr := '_Math_';
       201:TmpStr := '_Mask_';
@@ -2639,7 +2833,8 @@ begin
       Draw_Data(Sender);
 
       lFN := ReplaceStr(FN,'_*','');
-      Save_Data(lFN+TmpStr+lk.ToString,Sender);
+      lFN := ExtractFileName(lFN);
+      Save_Data(lDir+lFN+TmpStr+lk.ToString,Sender);
       Application.ProcessMessages;
       SB.Panels[2].Text := 'Slice No : '+lk.ToString;
     end;
@@ -2755,7 +2950,7 @@ end;
 procedure TForm_PW.SB_FFT_Fil2Click(Sender: TObject);
 var
   lk : longint;
-  lFN : string;
+  lFN, lDir : string;
 begin
   if CB_FFT_Target.ItemIndex = 0 then
   begin
@@ -2769,6 +2964,14 @@ begin
   end
   else
   begin
+    lDir := {TDirectory.GetParent}(ExtractFilePath(ChangeFileExt(FN,'')));
+    if lDir<>'' then
+      lDir := TDirectory.GetParent(ExtractFilePath(lDir))+'\FFT'
+    else
+      lDir := ExtractFileDrive(FN)+'\FFT';
+    if not(TDirectory.Exists(lDir)) then
+      MkDir(lDir);
+    lDir := lDir+'\';
     for lk:=StrToInt(Edit_FFT_ST.Text) to StrToInt(Edit_FFT_End.Text) do
     begin
       Booting := true;
@@ -2785,7 +2988,8 @@ begin
       Draw_Data(Sender);
 
       lFN := ReplaceStr(FN,'_*','');
-      Save_Data(lFN+'_FFT_Fil_'+lk.ToString,Sender);
+      lFN := ExtractFileName(lFN);
+      Save_Data(lDir+lFN+'_FFT_Fil_'+lk.ToString,Sender);
       Application.ProcessMessages;
       SB.Panels[2].Text := 'Slice No : '+lk.ToString;
     end;

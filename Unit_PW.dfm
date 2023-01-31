@@ -1708,11 +1708,11 @@ object Form_PW: TForm_PW
             Caption = 'dX, dY [pixel]'
           end
           object Label124: TLabel
-            Left = 95
+            Left = 108
             Top = 168
-            Width = 267
+            Width = 246
             Height = 14
-            Caption = '*Shift(X, Y) = (dX, dY)+(Z_X, Z_Y)*Img_No'
+            Caption = '*Shift(X,Y)=(dX,dY)+(Z_X,Z_Y)'#12539'Img_No'
           end
           object Bevel131: TBevel
             Left = 12
@@ -1834,7 +1834,7 @@ object Form_PW: TForm_PW
             Layout = blGlyphTop
             NumGlyphs = 2
             ParentFont = False
-            OnClick = Image_Tr
+            OnClick = SB_Img_ShiftClick
           end
           object Bevel136: TBevel
             Left = 12
@@ -1991,6 +1991,14 @@ object Form_PW: TForm_PW
             TabOrder = 2
             Text = '0'
           end
+          object CB_Extend: TCheckBox
+            Left = 18
+            Top = 166
+            Width = 73
+            Height = 17
+            Caption = 'Extend'
+            TabOrder = 9
+          end
         end
         object GroupBox132: TGroupBox
           Left = 0
@@ -2003,7 +2011,6 @@ object Form_PW: TForm_PW
           ParentBackground = False
           ParentColor = False
           TabOrder = 1
-          ExplicitTop = 286
           object Bevel141: TBevel
             Left = 224
             Top = 20
@@ -2547,7 +2554,7 @@ object Form_PW: TForm_PW
           object CB_MathType: TComboBox
             Left = 164
             Top = 20
-            Width = 73
+            Width = 110
             Height = 22
             ItemIndex = 0
             TabOrder = 0
@@ -2559,15 +2566,16 @@ object Form_PW: TForm_PW
               'Div'
               'Log'
               'Ln'
-              'Exp')
+              'Exp'
+              'Norm. const')
           end
           object Edit_Math_P: TEdit
-            Left = 243
+            Left = 279
             Top = 20
-            Width = 64
+            Width = 63
             Height = 22
             TabOrder = 1
-            Text = '5'
+            Text = '98'
           end
           object CB_Math_ROI: TCheckBox
             Left = 16
@@ -2694,8 +2702,8 @@ object Form_PW: TForm_PW
             Text = '0'
           end
           object Edit_Mask_R: TEdit
-            Left = 273
-            Top = 53
+            Left = 279
+            Top = 52
             Width = 63
             Height = 22
             TabOrder = 2
@@ -3634,9 +3642,6 @@ object Form_PW: TForm_PW
           ParentBackground = False
           ParentColor = False
           TabOrder = 0
-          ExplicitLeft = 3
-          ExplicitTop = 156
-          ExplicitHeight = 269
           object Panel172: TPanel
             Left = 2
             Top = 16
@@ -3798,8 +3803,6 @@ object Form_PW: TForm_PW
             Align = alClient
             Caption = 'Main info.'
             TabOrder = 1
-            ExplicitTop = 81
-            ExplicitHeight = 198
             object Label172: TLabel
               Left = 11
               Top = 20
@@ -3939,6 +3942,7 @@ object Form_PW: TForm_PW
               Width = 61
               Height = 22
               TabOrder = 8
+              Text = '0'
             end
             object Edit_DCM_Y: TEdit
               Left = 175
@@ -3946,6 +3950,7 @@ object Form_PW: TForm_PW
               Width = 61
               Height = 22
               TabOrder = 9
+              Text = '0'
             end
             object Edit_DCM_Z: TEdit
               Left = 242
@@ -3953,6 +3958,7 @@ object Form_PW: TForm_PW
               Width = 61
               Height = 22
               TabOrder = 10
+              Text = '0'
             end
           end
         end
@@ -3981,8 +3987,8 @@ object Form_PW: TForm_PW
             Style = bsRaised
           end
           object SB_DCM_Export: TSpeedButton
-            Left = 13
-            Top = 14
+            Left = 14
+            Top = 13
             Width = 64
             Height = 50
             Caption = 'Export'
