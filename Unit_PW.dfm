@@ -43,7 +43,7 @@ object Form_PW: TForm_PW
         Left = 10
         Top = 16
         Width = 268
-        Height = 56
+        Height = 62
       end
       object Bevel3: TBevel
         Left = 164
@@ -86,11 +86,11 @@ object Form_PW: TForm_PW
         Left = 285
         Top = 16
         Width = 83
-        Height = 56
+        Height = 62
       end
-      object Label1: TLabel
+      object Label3: TLabel
         Left = 293
-        Top = 20
+        Top = 25
         Width = 59
         Height = 16
         Caption = 'Img Mag.'
@@ -103,15 +103,15 @@ object Form_PW: TForm_PW
       end
       object Shape1: TShape
         Left = 22
-        Top = 91
+        Top = 95
         Width = 122
-        Height = 50
+        Height = 46
         Brush.Color = clMoneyGreen
         Shape = stRoundRect
       end
       object Label_ROI_Size: TLabel
         Left = 67
-        Top = 109
+        Top = 111
         Width = 75
         Height = 14
         Alignment = taCenter
@@ -200,12 +200,12 @@ object Form_PW: TForm_PW
         ParentFont = False
         OnClick = SB_SaveClick
       end
-      object Label2: TLabel
+      object Label1: TLabel
         Left = 17
-        Top = 22
-        Width = 92
+        Top = 27
+        Width = 50
         Height = 14
-        Caption = 'Img Min && Max'
+        Caption = 'Img Min'
       end
       object SB_Memo_CLR: TSpeedButton
         Left = 289
@@ -222,9 +222,9 @@ object Form_PW: TForm_PW
         ParentFont = False
         OnClick = SB_Memo_CLRClick
       end
-      object Label3: TLabel
+      object Label4: TLabel
         Left = 25
-        Top = 109
+        Top = 111
         Width = 32
         Height = 14
         Alignment = taCenter
@@ -239,10 +239,17 @@ object Form_PW: TForm_PW
         ParentColor = False
         ParentFont = False
       end
+      object Label2: TLabel
+        Left = 26
+        Top = 53
+        Width = 41
+        Height = 14
+        Caption = '    Max'
+      end
       object Edit_PMin: TEdit
-        Left = 17
-        Top = 42
-        Width = 78
+        Left = 82
+        Top = 23
+        Width = 90
         Height = 22
         Alignment = taRightJustify
         Font.Charset = DEFAULT_CHARSET
@@ -256,9 +263,9 @@ object Form_PW: TForm_PW
         OnChange = Edit_PMaxChange
       end
       object Edit_PMax: TEdit
-        Left = 101
-        Top = 42
-        Width = 78
+        Left = 82
+        Top = 50
+        Width = 90
         Height = 22
         Alignment = taRightJustify
         Font.Charset = DEFAULT_CHARSET
@@ -272,8 +279,8 @@ object Form_PW: TForm_PW
         OnChange = Edit_PMaxChange
       end
       object RB_PMinMax_A1: TRadioButton
-        Left = 187
-        Top = 36
+        Left = 183
+        Top = 38
         Width = 89
         Height = 17
         Caption = 'Auto - Full'
@@ -281,8 +288,8 @@ object Form_PW: TForm_PW
         OnClick = RB_PMinMax_MClick
       end
       object RB_PMinMax_M: TRadioButton
-        Left = 187
-        Top = 19
+        Left = 183
+        Top = 21
         Width = 63
         Height = 17
         Caption = 'Manual'
@@ -292,8 +299,8 @@ object Form_PW: TForm_PW
         OnClick = RB_PMinMax_MClick
       end
       object RB_PMinMax_A2: TRadioButton
-        Left = 187
-        Top = 53
+        Left = 183
+        Top = 55
         Width = 89
         Height = 17
         Caption = 'Auto - ROI'
@@ -302,7 +309,7 @@ object Form_PW: TForm_PW
       end
       object CB_Mag: TComboBox
         Left = 293
-        Top = 42
+        Top = 48
         Width = 66
         Height = 22
         Font.Charset = DEFAULT_CHARSET
@@ -323,7 +330,7 @@ object Form_PW: TForm_PW
       end
       object Edit_ROI_Left: TEdit
         Left = 13
-        Top = 81
+        Top = 85
         Width = 50
         Height = 22
         BevelOuter = bvRaised
@@ -340,7 +347,7 @@ object Form_PW: TForm_PW
       end
       object Edit_ROI_Right: TEdit
         Left = 46
-        Top = 129
+        Top = 130
         Width = 50
         Height = 22
         BevelOuter = bvRaised
@@ -357,7 +364,7 @@ object Form_PW: TForm_PW
       end
       object Edit_ROI_Bottom: TEdit
         Left = 102
-        Top = 129
+        Top = 130
         Width = 50
         Height = 22
         BevelOuter = bvRaised
@@ -374,7 +381,7 @@ object Form_PW: TForm_PW
       end
       object Edit_ROI_Top: TEdit
         Left = 69
-        Top = 81
+        Top = 85
         Width = 50
         Height = 22
         BevelOuter = bvRaised
@@ -426,7 +433,7 @@ object Form_PW: TForm_PW
       Top = 161
       Width = 377
       Height = 456
-      ActivePage = TabSheet1
+      ActivePage = TabSheet4
       Align = alTop
       DoubleBuffered = False
       Font.Charset = DEFAULT_CHARSET
@@ -440,6 +447,10 @@ object Form_PW: TForm_PW
       TabOrder = 2
       object TabSheet1: TTabSheet
         Caption = 'Info.'
+        ExplicitLeft = 0
+        ExplicitTop = 0
+        ExplicitWidth = 0
+        ExplicitHeight = 0
         object Panel101: TPanel
           Left = 0
           Top = 0
@@ -861,6 +872,10 @@ object Form_PW: TForm_PW
       object TabSheet2: TTabSheet
         Caption = 'B&&C'
         ImageIndex = 5
+        ExplicitLeft = 0
+        ExplicitTop = 0
+        ExplicitWidth = 0
+        ExplicitHeight = 0
         object GroupBox121: TGroupBox
           Left = 0
           Top = 0
@@ -1668,6 +1683,10 @@ object Form_PW: TForm_PW
       object TabSheet3: TTabSheet
         Caption = 'Trans.'
         ImageIndex = 1
+        ExplicitLeft = 0
+        ExplicitTop = 0
+        ExplicitWidth = 0
+        ExplicitHeight = 0
         object GroupBox131: TGroupBox
           Left = 0
           Top = 37
@@ -2244,6 +2263,10 @@ object Form_PW: TForm_PW
       object TabSheet4: TTabSheet
         Caption = 'Filter'
         ImageIndex = 2
+        ExplicitLeft = 0
+        ExplicitTop = 0
+        ExplicitWidth = 0
+        ExplicitHeight = 0
         object GroupBox141: TGroupBox
           Left = 0
           Top = 37
@@ -2551,6 +2574,13 @@ object Form_PW: TForm_PW
             ParentFont = False
             OnClick = SB_Fil_MathClick
           end
+          object Label146_2: TLabel
+            Left = 280
+            Top = 48
+            Width = 84
+            Height = 14
+            Caption = '(BK for Norm)'
+          end
           object CB_MathType: TComboBox
             Left = 164
             Top = 20
@@ -2779,6 +2809,10 @@ object Form_PW: TForm_PW
       object TabSheet5: TTabSheet
         Caption = 'FFT'
         ImageIndex = 5
+        ExplicitLeft = 0
+        ExplicitTop = 0
+        ExplicitWidth = 0
+        ExplicitHeight = 0
         object GroupBox151: TGroupBox
           Left = 0
           Top = 37
@@ -3274,6 +3308,10 @@ object Form_PW: TForm_PW
       object TabSheet6: TTabSheet
         Caption = 'Analyze'
         ImageIndex = 4
+        ExplicitLeft = 0
+        ExplicitTop = 0
+        ExplicitWidth = 0
+        ExplicitHeight = 0
         object GroupBox161: TGroupBox
           Left = 0
           Top = 83
@@ -3631,6 +3669,10 @@ object Form_PW: TForm_PW
         ImageIndex = 4
         OnHide = TabSheet7Hide
         OnShow = TabSheet7Show
+        ExplicitLeft = 0
+        ExplicitTop = 0
+        ExplicitWidth = 0
+        ExplicitHeight = 0
         object GroupBox171: TGroupBox
           Left = 0
           Top = 161

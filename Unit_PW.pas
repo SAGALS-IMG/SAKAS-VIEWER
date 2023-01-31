@@ -38,6 +38,7 @@ type
     Label1: TLabel;
     Label2: TLabel;
     Label3: TLabel;
+    Label4: TLabel;
     Label5: TLabel;
     Label_ROI_Size: TLabel;
     Edit_PMin: TEdit;
@@ -238,6 +239,7 @@ type
     Label144: TLabel;
     Label145: TLabel;
     Label146: TLabel;
+    Label146_2: TLabel;
     Label147: TLabel;
     SB_Mask: TSpeedButton;
     Bevel147: TBevel;
@@ -924,11 +926,14 @@ begin
         lPmax := Buf2[lj,li];
     end;
 
-  if lPMin=lPMax then
-    lPMin := lPMax-0.1;
-
-  Edit_PMin.Text := Format('%9f',[lPmin]);
-  Edit_PMax.Text := Format('%9f',[lPmax]);
+  Edit_PMin.Text := Trim(Format('%12.4f',[lPmin]));
+  Edit_PMax.Text := Trim(Format('%12.4f',[lPmax]));
+  if Edit_PMin.Text = Edit_PMax.Text then
+  begin
+    if lPMin=lPMax then
+      lPMin := lPMax-0.1;
+    Edit_PMin.Text := Format('%10.3f',[lPmin]);
+  end;
 end;
 
 procedure TForm_PW.Disp_Info(Sender: TObject);
@@ -1958,9 +1963,8 @@ begin
 
       lFN := ReplaceStr(FN,'_*','');
       lFN := ExtractFileName(lFN);
-      Save_Data(lDir+lFN+'_shft_'+lk.ToString,Sender);
       try
-        FS := TfileStream.Create(lFN,fmCreate);
+        FS := TfileStream.Create(lDir+lFN+'_shft_'+lk.ToString,fmCreate);
         for lj:=0 to ExPY-1 do
         begin
           for li:=0 to ExPX-1 do
